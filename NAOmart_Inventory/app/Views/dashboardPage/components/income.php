@@ -6,7 +6,7 @@
     </div>
     <div class="flex flex-col justify-center">
         <h1 class="text-[25px]">Total Income</h1>
-        <a class="text-[30px]">Rp10.000.000</a>
+        <a class="text-[30px] font-extrabold">Rp10.000.000</a>
     </div>
 </div>
 
