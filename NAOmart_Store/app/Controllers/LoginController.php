@@ -4,7 +4,7 @@ use App\Models\Login;
 class LoginController extends BaseController{
 
     public function index(){
-        return view('login');
+        return view('/loginPage/login');
     }
     public function login_action(){
         $model = model(Login::class);
