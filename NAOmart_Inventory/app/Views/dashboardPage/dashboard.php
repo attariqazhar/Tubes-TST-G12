@@ -12,7 +12,7 @@
                 ?>
             </div>
             <?php
-            include 'components/table.php';
+            include ('components/table.php');
             ?>
         </div>
         <div class="flex flex-col"> 
