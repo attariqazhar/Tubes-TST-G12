@@ -7,7 +7,14 @@ module.exports = {
     "./app/Views/**/**/**/*.php",
   ],
   theme: {
-    extend: {},
+    extend: 
+    {
+      fontFamily: {
+        dmsans: ['DM Sans'],
+        josefin: ['Josefin Sans'],
+        maven: ['Maven Pro']
+      }
+    },
   },
   plugins: [],
 }
