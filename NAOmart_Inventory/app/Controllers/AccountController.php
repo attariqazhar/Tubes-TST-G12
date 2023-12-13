@@ -1,11 +1,16 @@
 <?php
+
 namespace App\Controllers;
-use App\Models\Customer;
-class CustomerController extends BaseController{
-    public function index() {
-        $model = model(Customer::class);
-        $data['customer'] = $model->getDataCustomer();
-        return view('customer');
+use App\Models\Account;
+
+class AccountController extends BaseController
+{
+    public function index() 
+    {
+        echo view('layout/header');
+        echo view('layout/sidebar');
+        echo view('profilePage/profile');
+        echo view('layout/footer');
     }
 
     public function login() {
@@ -19,7 +24,7 @@ class CustomerController extends BaseController{
     }
 
     public function login_action(){
-        $model = model(Customer::class);
+        $model = model(Account::class);
         $username = $this->request->getPost('username');
         $password = md5($this->request->getPost('password'));
         $cek = $model->getDataUsers($username, $password);

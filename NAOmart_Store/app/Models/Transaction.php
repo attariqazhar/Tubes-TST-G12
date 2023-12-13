@@ -10,8 +10,13 @@ class Transaction extends Model
         return $this->findAll();
     }
 
-    public function getCustomerTransactionHistory($customer) {
-        $result = $this->where('username',$customer)->findAll();
+    public function getCustomerTransactionHistory($email) {
+        $result = $this->where('email',$email)->findAll();
+        // $result = $this
+        //     ->select('transaction.*, customer.*') // Include columns you need from both tables
+        //     ->join('customer', 'customer.email = transaction.email')
+        //     ->where('transaction.email', $email)
+        //     ->findAll();
         return $result;
     }
 }

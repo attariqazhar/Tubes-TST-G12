@@ -16,7 +16,7 @@
             <label class="text-sm font-medium">Password</label>
             <input class="bg-[#FAFAFA] h-[40px] border border-[#EAEAEA] rounded-[5px] pl-3" type="password" name="password" placeholder="@password123">
         </div>
-        <button class="w-full bg-[#FFC220] mt-5 h-[35px] rounded-[5px] font-extrabold text-white" type="submit" class="">LOGIN</button>
+        <button class="w-full bg-[#FFC220] mt-5 h-[35px] rounded-[5px] font-extrabold text-white" type="submit" class="">LOG IN</button>
     </form>
     </div>
 </div>
