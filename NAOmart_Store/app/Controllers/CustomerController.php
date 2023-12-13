@@ -8,6 +8,16 @@ class CustomerController extends BaseController{
         return view('customer');
     }
 
+    public function login() {
+        if (session()->get('username') == '') {
+            echo view('layout/loginHeader');
+            echo view('loginPage/login');
+            echo view('layout/footer');
+        } else {
+            return redirect()->to('/');
+        }
+    }
+
     public function login_action(){
         $model = model(Customer::class);
         $username = $this->request->getPost('username');
