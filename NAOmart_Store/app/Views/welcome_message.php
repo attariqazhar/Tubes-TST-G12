@@ -221,7 +221,7 @@
 
     <div class="heroe">
 
-        <h1 class="">Welcome to Store</h1>
+        <h1 class=""><?php echo session("username");?></h1>
 
         <h2>The small framework with powerful features</h2>
 
