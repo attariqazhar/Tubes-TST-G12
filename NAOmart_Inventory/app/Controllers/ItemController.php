@@ -34,4 +34,11 @@ class ItemController extends BaseController
         echo view('dashboardPage/dashboard',$data);
         echo view('layout/footer');
     }
+
+    public function updateStock($itemId, $stock)
+    {
+        $model = model(Item::class);
+        $model->update($itemId, ['stock' => $stock]);
+        return redirect()->to('/');
+    }
 }

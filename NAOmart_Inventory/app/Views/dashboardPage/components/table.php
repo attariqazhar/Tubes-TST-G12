@@ -1,3 +1,17 @@
+
+<script>
+    $editMode = false;
+
+    function toggleEditMode() {
+        editMode = !editMode;
+        console.log('Edit Mode: ' + editMode);
+    }
+
+    function enterEditMode() {
+        toggleEditMode();
+    }
+</script>
+
 <div class="mt-20 flex">
     <div class="flex flex-col my-2 mx-5">
         <div class="">
@@ -29,21 +43,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tbody>
                     <?php foreach ($items as $item) : ?>
-                        <tr class="border-b-2 border-black whitespace-nowrap text-center">
+                        <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
                             <td class="py-5"><?= $item["itemId"] ?></td>
                             <td class=""><?= $item["itemName"] ?></td>
                             <td class=""><?= $item["category"] ?></td>
-                            <td class=""><?= $item["price"] ?></td>
-                            <td class=""><?= $item["stock"] ?></td>
+                            <td><?php echo 'Rp' . number_format($item["price"], 0, ',', '.'); ?></td>
+                            <td class="">  
+                                <input disabled type="number" value="<?= $item["stock"] ?>" id="stockInput<?= $item["itemId"] ?>" class="w-[100px] text-center rounded-[6px] bg-[#F2DFD8]">                              
+                            </td>
                             <td class="">
-                                <button class="bg-[#123D6A] p-2 rounded-[6px]">
+                                <!-- Edit Button -->
+                                <button onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#123D6A] p-2 rounded-[6px]">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 12.24L0.5 13.5L1.76 9.00002L10 0.800021C10.0931 0.704775 10.2044 0.629096 10.3271 0.577429C10.4499 0.525761 10.5818 0.499146 10.715 0.499146C10.8482 0.499146 10.9801 0.525761 11.1029 0.577429C11.2256 0.629096 11.3369 0.704775 11.43 0.800021L13.2 2.58002C13.2937 2.67298 13.3681 2.78359 13.4189 2.90544C13.4697 3.0273 13.4958 3.15801 13.4958 3.29002C13.4958 3.42203 13.4697 3.55274 13.4189 3.6746C13.3681 3.79646 13.2937 3.90706 13.2 4.00002L5 12.24Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-
                                 </button>
+
+                                <!-- Delete Button -->
                                 <button class="bg-[#AB3B61] p-2 rounded-[6px]">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M1 3.5H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
@@ -57,13 +74,23 @@
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                </tbody>
             </table>
-            <div class="mt-8 py-5 text-[15px]">
+            <script> 
+            function toggleEditMode(itemId) {
+                var stockInput = document.getElementById('stockInput' + itemId);
+                stockInput.disabled = !stockInput.disabled;
+                stockInput.classList.toggle('bg-[#F2DFD8]');
+
+            }
+            </script>
+            
+            <div class="mt-8 py-5 text-[15px] flex">
                 <button class="px-5">
                     Previous page
                 </button>
-                <?= $pager->links() ?>
+                <div class="flex">
+                    <?= $pager->links() ?>
+                </div>
                 <button class="px-5">
                     Next page
                 </button>
