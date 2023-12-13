@@ -8,14 +8,15 @@ class TransactionController extends BaseController {
     {
         $model = model(Transaction::class);
         $data['transaction'] = $model->getDataTransaction();
-        return view('/transactionPage/transaction');
+        return view('/profile-and-transaction/transaction');
     }
 
     public function showTransactionHistory()
     {
         $model = model(Transaction::class);
-        $customer = strtolower(session('username'));
-        $data['transactions'] = $model->getCustomerTransactionHistory($customer);
-        return view("/transactionPage/transaction",$data);
+        // $customer = strtolower(session('username'));
+        $email = session("email");
+        $data['transactions'] = $model->getCustomerTransactionHistory($email);
+        return view("/profile-and-transaction/transaction",$data);
     }
 }

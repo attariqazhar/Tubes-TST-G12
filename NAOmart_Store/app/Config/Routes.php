@@ -7,7 +7,7 @@ use CodeIgniter\Router\RouteCollection;
  */
 $routes->get('/', 'Pages::index');
 $routes->get('/login', 'Pages::login');
-$routes->get('/logout', 'LoginController::logout');
-$routes->post('/login_action', 'LoginController::login_action');
+$routes->get('/logout', 'CustomerController::logout');
+$routes->post('/login_action', 'CustomerController::login_action');
 $routes->get('/transaction','TransactionController::showTransactionHistory');
-$routes->get('/profile','Pages::profile');
+$routes->get('/profile-and-transaction','Pages::transaction');

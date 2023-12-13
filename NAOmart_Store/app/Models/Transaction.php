@@ -11,7 +11,7 @@ class Transaction extends Model
     }
 
     public function getCustomerTransactionHistory($customer) {
-        $result = $this->where('username',$customer)->findAll();
+        $result = $this->where('email',$customer)->findAll();
         return $result;
     }
 }

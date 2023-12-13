@@ -530,6 +530,12 @@ video {
 .relative {
   position: relative;
 }
+.m-5 {
+  margin: 1.25rem;
+}
+.m-10 {
+  margin: 2.5rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -677,6 +683,12 @@ video {
 }
 .ml-2 {
   margin-left: 0.5rem;
+}
+.ml-10 {
+  margin-left: 2.5rem;
+}
+.ml-20 {
+  margin-left: 5rem;
 }
 .block {
   display: block;
@@ -891,8 +903,19 @@ video {
   margin-right: calc(1.25rem * var(--tw-space-x-reverse));
   margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-y-3 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.75rem * var(--tw-space-y-reverse));
+}
+.overflow-x-auto {
+  overflow-x: auto;
+}
 .overflow-y-auto {
   overflow-y: auto;
+}
+.whitespace-nowrap {
+  white-space: nowrap;
 }
 .rounded {
   border-radius: 0.25rem;
@@ -921,6 +944,9 @@ video {
 .border-0 {
   border-width: 0px;
 }
+.border-b-2 {
+  border-bottom-width: 2px;
+}
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -942,6 +968,10 @@ video {
 }
 .border-\[\] {
   border-color: ;
+}
+.border-\[\#9F9F9F\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(159 159 159 / var(--tw-border-opacity));
 }
 .bg-\[\#5E81D1\] {
   --tw-bg-opacity: 1;
@@ -982,6 +1012,14 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(1 127 204 / var(--tw-bg-opacity));
 }
+.bg-\[\#123D6A\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(18 61 106 / var(--tw-bg-opacity));
+}
+.bg-\[\#AB3B61\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(171 59 97 / var(--tw-bg-opacity));
+}
 .stroke-\[\#EAEAEA\] {
   stroke: #EAEAEA;
 }
@@ -1021,6 +1059,10 @@ video {
 .py-1 {
   padding-top: 0.25rem;
   padding-bottom: 0.25rem;
+}
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .pt-5 {
   padding-top: 1.25rem;
@@ -1091,6 +1133,12 @@ video {
 .text-\[15px\] {
   font-size: 15px;
 }
+.text-\[30px\] {
+  font-size: 30px;
+}
+.text-\[25px\] {
+  font-size: 25px;
+}
 .font-bold {
   font-weight: 700;
 }
@@ -1157,6 +1205,13 @@ video {
 .text-\[\#5E81D1\] {
   --tw-text-opacity: 1;
   color: rgb(94 129 209 / var(--tw-text-opacity));
+}
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+.text-\[4\] {
+  color: 4;
 }
 .antialiased {
   -webkit-font-smoothing: antialiased;
