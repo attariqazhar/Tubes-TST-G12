@@ -12,6 +12,13 @@ class Pages extends BaseController
         echo view('layout/footer');
     }
 
+    public function index()
+    {
+        echo view('layout/header');
+        echo view('storePage/store');
+        echo view('layout/footer');
+    }
+
     public function profile() 
     {
         echo view('layout/header');

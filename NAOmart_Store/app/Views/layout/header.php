@@ -7,5 +7,5 @@
     <link rel="stylesheet" href="/css/app.css">
     <?php helper('html') ?>
 </head>
-<body class="flex font-dmsans">
+<body class="flex flex-col font-dmsans">
     
