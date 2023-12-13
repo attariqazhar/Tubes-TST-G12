@@ -12,7 +12,7 @@
             
             <img src="https://cdn.iconscout.com/icon/free/png-256/free-avatar-370-456322.png?f=webp" width="40" height="40" />
 
-            <span class="ms-3">Andrew Smith</span>
+            <span class="ms-3"><?php echo (session("name"));?></span>
           </a>
         </li>
         <li>
