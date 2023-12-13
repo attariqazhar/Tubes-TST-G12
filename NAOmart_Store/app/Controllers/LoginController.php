@@ -2,10 +2,6 @@
 namespace App\Controllers;
 use App\Models\Login;
 class LoginController extends BaseController{
-
-    public function index(){
-        return view('/loginPage/login');
-    }
     public function login_action(){
         $model = model(Login::class);
         $username = $this->request->getPost('username');

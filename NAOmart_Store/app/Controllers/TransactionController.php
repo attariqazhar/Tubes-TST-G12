@@ -8,7 +8,7 @@ class TransactionController extends BaseController {
     {
         $model = model(Transaction::class);
         $data['transaction'] = $model->getDataTransaction();
-        return view('transaction');
+        return view('/transactionPage/transaction');
     }
 
     public function showTransactionHistory()
@@ -16,6 +16,6 @@ class TransactionController extends BaseController {
         $model = model(Transaction::class);
         $customer = strtolower(session('username'));
         $data['transactions'] = $model->getCustomerTransactionHistory($customer);
-        return view("transaction",$data);
+        return view("/transactionPage/transaction",$data);
     }
 }
