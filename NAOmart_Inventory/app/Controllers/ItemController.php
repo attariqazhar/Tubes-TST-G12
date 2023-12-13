@@ -18,7 +18,7 @@ class ItemController extends BaseController
     {
         $model = model(Item::class);
         $data = [
-            'items' => $model->paginate(5),
+            'items' => $model->orderBy('itemId', 'DESC')->paginate(5),
             'pager' => $model->pager
         ];
         return $data;
@@ -35,10 +35,42 @@ class ItemController extends BaseController
         echo view('layout/footer');
     }
 
-    public function updateStock($itemId, $stock)
+    public function updateStock($itemId)
     {
+        // $model = model(Item::class);
+        // $model->update($itemId, ['stock' => $stock]);
+        // return redirect()->to('/');
+        // Get the stock value from the request
+        $stock = $this->request->getJSON(true)['stock'];
+
+        // Update the item in the database
         $model = model(Item::class);
         $model->update($itemId, ['stock' => $stock]);
+
+        // Respond with a success message or appropriate response
+        return $this->response->setJSON(['status' => 'success']);
+    }
+
+
+    public function addItem()
+    {
+        // $model = model(Item::class);
+        // //get biggest id 
+        // $biggestId = $model->selectMax('itemId');
+        // $biggestId = $biggestId['itemId'];
+
+        $data = [
+            'itemId' => $this->request->getVar('itemName'),
+            'itemName' => $this->request->getVar('itemName'),
+            'category' => $this->request->getVar('category'),
+            'price' => $this->request->getVar('price'),
+            'stock' => $this->request->getVar('stock'),
+        ];
+
+        $model = model(Item::class);
+        $model->insert($data);
+
         return redirect()->to('/');
+        
     }
 }

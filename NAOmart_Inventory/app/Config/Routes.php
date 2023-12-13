@@ -15,4 +15,5 @@ $routes->get('/login', 'AccountController::login');
 $routes->get('/logout', 'AccountController::logout');
 $routes->post('/login_action', 'AccountController::login_action');
 $routes->post('/logout', 'AccountController::logout');
-
+$routes->post('item/update/(:num)', 'ItemController::updateStock/$1');
+$routes->post('/addItem', 'ItemController::addItem');

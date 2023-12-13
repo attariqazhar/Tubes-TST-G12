@@ -25,7 +25,6 @@ class Item extends Model
         return ['items'=>$this->paginate($num),
                 'pager'=>$this->pager,];
                 
-        
     }
 
     public function getNumberOfItems() {
