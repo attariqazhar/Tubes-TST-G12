@@ -9,34 +9,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
-                <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
-                    <td class="py-3">1234</td>
-                    <td class="">9</td>
-                </tr>
+                <?php foreach ($lowStockItems as $lowStockItem):?>
+                    <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
+                        <td class="py-3"><?=$lowStockItem['itemId']?></td>
+                        <td class=""><?=$lowStockItem['stock']?></td>
+                    </tr>
+                <?php endforeach;?>
             </tbody>
 
         </table>
