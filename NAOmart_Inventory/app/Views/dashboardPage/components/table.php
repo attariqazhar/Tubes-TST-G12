@@ -41,7 +41,7 @@
                             <td class="">  
                                 <input disabled type="number" value="<?= $item["stock"] ?>" id="stockInput<?= $item["itemId"] ?>" class="w-[100px] text-center rounded-[6px] bg-[#F2DFD8]">                              
                             </td>
-                            <td class="">
+                            <td class="flex justify-center mt-5 space-x-3">
                                 <!-- Edit Button -->
                                 <button id="editbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#123D6A] p-2 rounded-[6px]">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -49,7 +49,7 @@
                                     </svg>
                                 </button>
 
-                                <form action="/delete/<?= $item['itemId']; ?>" method="ost">
+                                <form id="deletebutton<?= $item['itemId'] ?>" action="/delete/<?= $item['itemId']; ?>" method="ost">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button action="/delete/<?= $item['itemId']; ?>" class="bg-[#AB3B61] p-2 rounded-[6px]">
                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,8 +61,6 @@
                                         </svg>
                                     </button>
                                 </form>
-
-
 
                                 <!-- Cancel Button -->
                                 <button hidden id="cancelbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#AB3B61] p-2 rounded-[6px]">
