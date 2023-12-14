@@ -51,7 +51,7 @@
 
                                 <form action="/delete/<?= $item['itemId']; ?>" method="ost">
                                     <input type="hidden" name="_method" value="DELETE">
-                                    <button action="/delete/<?= $item['itemId']; ?>" class="bg-[#AB3B61] p-2 rounded-[6px]">
+                                    <button id="deletebutton" action="/delete/<?= $item['itemId']; ?>" class="bg-[#AB3B61] p-2 rounded-[6px]">
                                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M1 3.5H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                                             <path d="M2.5 3.5H11.5V12.5C11.5 12.7652 11.3946 13.0196 11.2071 13.2071C11.0196 13.3946 10.7652 13.5 10.5 13.5H3.5C3.23478 13.5 2.98043 13.3946 2.79289 13.2071C2.60536 13.0196 2.5 12.7652 2.5 12.5V3.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
