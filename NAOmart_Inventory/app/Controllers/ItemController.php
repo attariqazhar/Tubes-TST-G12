@@ -76,4 +76,41 @@ class ItemController extends BaseController
         return redirect()->to('/');
         
     }
+
+    
+function getTotalIncomeFromApi($apiUrl)
+{
+    // Set up the HTTP headers
+    $options = [
+        'http' => [
+            'method' => 'GET', // Adjust the HTTP method if needed
+            'header' => [
+                'Content-type: application/json',
+            ],
+        ],
+    ];
+
+    // Create a stream context
+    $context = stream_context_create($options);
+
+    // Make the HTTP request
+    $response = file_get_contents($apiUrl, false, $context);
+
+    // Check for errors
+    if ($response === false) {
+        return ['error' => 'Error making the request.'];
+    }
+
+    // Process the API response
+    $responseData = json_decode($response, true);
+
+    // Check if the API response has an error field
+    if (isset($responseData['error'])) {
+        return $responseData;
+    }
+
+    // Return the total income value
+    return $responseData['totalIncome'];
+}
+
 }
