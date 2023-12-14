@@ -37,13 +37,10 @@
         
     </div>
 
-    <hr class="h-1 my-4 mx-5 bg-[#C0BDBD] ">
+    <hr class="h-1 my-4 mx-5 bg-[#C0BDBD] bg-black ">
     <div class="mt-3">
-        <div class="ml-5 text-[40px] font-extrabold text-[#F16B44]">
-            Recommended Products
-        </div>
         <div class="flex space-x-5">
-            <!-- ini template card -->
+            <!-- Card Biasa -->
             <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
                 <div class="flex justify-center my-5">
                     <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
@@ -127,16 +124,15 @@
 
             <!-- Card Cuci Gudang -->
             <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
+                <img src="https://i.imgur.com/P6RIqtm.png" title="source: imgur.com" class="absolute -mt-[20px] ml-[225px] w-[100px]"/>
+
                 <div class="flex justify-center my-5">
                     <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
                 </div>
                 <div class="ml-3">
-                    <div>
-                        <p class="text-[20px]">Lego Star Wars</p>
-                        <p class="text-sm">Toys</p>
-                        <p class="text-[15px]">Rp 1.000.000</p>
-                    </div>
-                    <div>
+                    <p class="text-[20px]">Lego Star Wars</p>
+                    <p class="text-sm">Toys</p>
+                    <p class="text-[15px]">Rp 1.000.000</p>
                 </div>
                 <div class="flex justify-between mx-3 mt-3">
                     <div class="flex border border-[#FFC220] h-[30px]">
@@ -157,7 +153,9 @@
                     </div>
                     <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                 </div>
+               
             </div>
+            
         </div>
     </div>
     <div class="mt-3" hidden>
