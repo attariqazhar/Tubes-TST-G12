@@ -3,6 +3,7 @@
         <h1 class="text-[30px] text-[#123D6A] mt-10 font-extrabold">Add Item</h1>
     </div>
     <div class="mt-5 mx-5">
+
         <form action="<?= base_url('/addItem') ?>" class="" method="post">
             <div class="flex flex-col">
                 <label class="text-sm font-medium" >Item Name</label>

@@ -35,9 +35,17 @@ class Pages extends BaseController
 
     public function addItem()
     {
+        if (!$this->validate([
+            'itemName' => 'required',
+            'category' => 'required',
+            'price'    => 'required',
+            'stock'    => 'required',
+        ])){
+            echo '<script>alert("Isi semua data");</script>';
+        }
         $model = new Item(); // Create a new instance of the Item model
-    
         $model->save([
+
             'itemName' => $this->request->getVar('itemName'),
             'category' => $this->request->getVar('category'),
             'price'    => $this->request->getVar('price'),
@@ -55,5 +63,13 @@ class Pages extends BaseController
         $data['items'] = $model->search($keyword);
 
         return view('components/table', $data);
+    }
+
+    public function delete($itemId){
+        $model = new Item();
+        $model->delete([
+            'itemId' => $itemId
+        ]);
+        return redirect()->to('/');
     }
 }

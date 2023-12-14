@@ -49,16 +49,21 @@
                                     </svg>
                                 </button>
 
-                                <!-- Delete Button -->
-                                <button id="deletebutton<?= $item['itemId'] ?>"  class="bg-[#AB3B61] p-2 rounded-[6px]">
-                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M1 3.5H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M2.5 3.5H11.5V12.5C11.5 12.7652 11.3946 13.0196 11.2071 13.2071C11.0196 13.3946 10.7652 13.5 10.5 13.5H3.5C3.23478 13.5 2.98043 13.3946 2.79289 13.2071C2.60536 13.0196 2.5 12.7652 2.5 12.5V3.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M4.5 3.5V3C4.5 2.33696 4.76339 1.70107 5.23223 1.23223C5.70107 0.763392 6.33696 0.5 7 0.5C7.66304 0.5 8.29893 0.763392 8.76777 1.23223C9.23661 1.70107 9.5 2.33696 9.5 3V3.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5.5 5.5V11" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M8.5 5.5V11" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </button>
+                                <form action="/delete/<?= $item['itemId']; ?>" method="ost">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button action="/delete/<?= $item['itemId']; ?>" class="bg-[#AB3B61] p-2 rounded-[6px]">
+                                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 3.5H13" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M2.5 3.5H11.5V12.5C11.5 12.7652 11.3946 13.0196 11.2071 13.2071C11.0196 13.3946 10.7652 13.5 10.5 13.5H3.5C3.23478 13.5 2.98043 13.3946 2.79289 13.2071C2.60536 13.0196 2.5 12.7652 2.5 12.5V3.5Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M4.5 3.5V3C4.5 2.33696 4.76339 1.70107 5.23223 1.23223C5.70107 0.763392 6.33696 0.5 7 0.5C7.66304 0.5 8.29893 0.763392 8.76777 1.23223C9.23661 1.70107 9.5 2.33696 9.5 3V3.5" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M5.5 5.5V11" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                            <path d="M8.5 5.5V11" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
+                                    </button>
+                                </form>
+
+
+
                                 <!-- Cancel Button -->
                                 <button hidden id="cancelbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#AB3B61] p-2 rounded-[6px]">
                                     <svg width="14" height="14" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,6 +86,7 @@
                                     <path d="M0.5 8.55005L3.23 12.06C3.32212 12.1797 3.44016 12.277 3.57525 12.3446C3.71034 12.4121 3.85898 12.4482 4.01 12.45C4.15859 12.4518 4.3057 12.4203 4.44063 12.3581C4.57555 12.2958 4.6949 12.2042 4.79 12.09L13.5 1.55005" stroke="#000001" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                 </button>
+
                             </td>
                         </tr>
                     <?php endforeach; ?>
