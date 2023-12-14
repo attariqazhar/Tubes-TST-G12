@@ -37,39 +37,46 @@
         
     </div>
 
-    <hr class="h-1 my-4 mx-5 bg-[#C0BDBD] bg-black ">
+    <hr class="h-1 my-4 mx-5 bg-[#C0BDBD] ">
     <div class="mt-3">
+        <div class="ml-5 text-[40px] font-extrabold text-[#F16B44]">
+            Recommended Products
+        </div>
         <div class="flex space-x-5">
-            <!-- Card Biasa -->
-            <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
-                <div class="flex justify-center my-5">
-                    <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
-                </div>
-                <div class="ml-3">
-                    <p class="text-[20px]">Lego Star Wars</p>
-                    <p class="text-sm">Toys</p>
-                    <p class="text-[15px]">Rp 1.000.000</p>
-                </div>
-                <div class="flex justify-between mx-3 mt-3">
-                    <div class="flex border border-[#FFC220] h-[30px]">
-                        <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                            <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black"/>
-                            </svg>
-                        </button>
-                        <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
-                            <p>0</p>
-                        </div>
-                        <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z" fill="black"/>
-                            </svg>
-
-                        </button>
+            <!-- ini template card -->
+            <?php foreach ($itemsData as $item):?>
+            {
+                <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
+                    <div class="flex justify-center my-5">
+                        <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
                     </div>
-                    <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
+                    <div class="ml-3">
+                        <p class="text-[20px]">Lego Star Wars</p>
+                        <p class="text-sm">Toys</p>
+                        <p class="text-[15px]">Rp 1.000.000</p>
+                    </div>
+                    <div class="flex justify-between mx-3 mt-3">
+                        <div class="flex border border-[#FFC220] h-[30px]">
+                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
+                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black"/>
+                                </svg>
+                            </button>
+                            <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
+                                <p>0</p>
+                            </div>
+                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z" fill="black"/>
+                                </svg>
+
+                            </button>
+                        </div>
+                        <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
+                    </div>
                 </div>
-            </div>
+            }
+            <?php endforeach;?>
             <!-- ini template card -->
 
         </div>
@@ -78,16 +85,26 @@
         <div class="ml-5 text-[35px] text-[#5E81D1]">
             Catalogue
         </div>
+        <!-- Card Biasa -->
         <div class="flex flex-wrap">
-            <!-- Card Biasa -->
-            <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
+            <?php foreach ($itemsData as $item):?>
+                
+                <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
                 <div class="flex justify-center my-5">
-                    <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
-                </div>
+                    <?php if ($item['category'] == "Toys"):?>
+                        <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
+                    <?php elseif ($item['category'] == "Food & Drinks"): ?>
+                        <img src="https://imgur.com/UyXPCpN.jpg" title="source: imgur.com" class="w-[165px]" />
+                    <?php elseif ($item['category'] == "Households"): ?>
+                        <img src="https://i.imgur.com/usbw5zM.jpg" title="source: imgur.com" class="w-[165px]" />
+                    <?php elseif ($item['category'] == "Stationary"): ?>
+                        <img src="https://imgur.com/cVFmMml.jpg" title="source: imgur.com" class="w-[165px]" />               
+                    <?php endif;?>
+                </div>  
                 <div class="ml-3">
-                    <p class="text-[20px]">Lego Star Wars</p>
-                    <p class="text-sm">Toys</p>
-                    <p class="text-[15px]">Rp 1.000.000</p>
+                    <p class="text-[20px]"><?=$item['itemName']?></p>
+                    <p class="text-sm"><?=$item['category']?></p>
+                    <p class="text-[15px]"><?=$item['price']?></p>
                 </div>
                 <div class="flex justify-between mx-3 mt-3">
                     <div class="flex border border-[#FFC220] h-[30px]">
@@ -109,18 +126,21 @@
                     <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                 </div>
             </div>
+
+            <?php endforeach;?>
 
             <!-- Card Cuci Gudang -->
             <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
-                <img src="https://i.imgur.com/P6RIqtm.png" title="source: imgur.com" class="absolute -mt-[20px] ml-[225px] w-[100px]"/>
-
                 <div class="flex justify-center my-5">
                     <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
                 </div>
                 <div class="ml-3">
-                    <p class="text-[20px]">Lego Star Wars</p>
-                    <p class="text-sm">Toys</p>
-                    <p class="text-[15px]">Rp 1.000.000</p>
+                    <div>
+                        <p class="text-[20px]">Lego Star Wars</p>
+                        <p class="text-sm">Toys</p>
+                        <p class="text-[15px]">Rp 1.000.000</p>
+                    </div>
+                    <div>
                 </div>
                 <div class="flex justify-between mx-3 mt-3">
                     <div class="flex border border-[#FFC220] h-[30px]">
@@ -141,11 +161,10 @@
                     </div>
                     <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                 </div>
-               
             </div>
-            
         </div>
     </div>
+
     <div class="mt-3" hidden>
         <div class="ml-5 text-[35px] text-black">
             Search result for "Chicken"
