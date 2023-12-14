@@ -81,16 +81,26 @@
         <div class="ml-5 text-[35px] text-[#5E81D1]">
             Catalogue
         </div>
+        <!-- Card Biasa -->
         <div class="flex flex-wrap">
-            <!-- Card Biasa -->
-            <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
+            <?php foreach ($itemsData as $item):?>
+                
+                <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
                 <div class="flex justify-center my-5">
-                    <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
-                </div>
+                    <? if ($item['category'] == "Toys"):?>
+                        <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
+                    <? elseif ($item['category'] == "Food & Drinks"): ?>
+                        <img src="https://imgur.com/UyXPCpN" title="source: imgur.com" class="w-[165px]" />
+                    <? elseif ($item['category'] == "Households"): ?>
+                        <img src="https://i.imgur.com/usbw5zM.jpg" title="source: imgur.com" class="w-[165px]" />
+                    <? elseif ($item['category'] == "Stationary"): ?>
+                        <img src="https://imgur.com/cVFmMml" title="source: imgur.com" class="w-[165px]" />               
+                    <? endif;?>
+                </div>  
                 <div class="ml-3">
-                    <p class="text-[20px]">Lego Star Wars</p>
-                    <p class="text-sm">Toys</p>
-                    <p class="text-[15px]">Rp 1.000.000</p>
+                    <p class="text-[20px]"><?=$item['itemName']?></p>
+                    <p class="text-sm"><?=$item['category']?></p>
+                    <p class="text-[15px]"><?=$item['price']?></p>
                 </div>
                 <div class="flex justify-between mx-3 mt-3">
                     <div class="flex border border-[#FFC220] h-[30px]">
@@ -112,6 +122,8 @@
                     <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                 </div>
             </div>
+
+            <?php endforeach;?>
 
             <!-- Card Cuci Gudang -->
             <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-2xl">
