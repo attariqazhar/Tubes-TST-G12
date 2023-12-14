@@ -17,22 +17,18 @@ class ItemController extends BaseController
         return $links;
     }
 
+
     public function getItems()
     {
         $api_link = 'http://localhost:8081/API/getItems';
         $json_data = file_get_contents($api_link);
         
-        // Decode JSON data
         $decoded_data = json_decode($json_data, true);
     
-        // Check if decoding was successful and the "items" key exists
         if (is_array($decoded_data) && array_key_exists('items', $decoded_data)) {
-            // Extract only the "items" part
             $data['itemsData'] = $decoded_data['items'];
         } else {
-            // Handle the case where the structure is not as expected
             echo "Invalid data format.";
-            // You might want to log an error or handle it differently based on your application's requirements
         }
         return $data;
     }
