@@ -4,7 +4,7 @@
     </div>
     <div class="mt-5 mx-5">
         <form action="addItem" class="" method="post">
-\
+
             <div class="flex flex-col">
                 <label class="text-sm font-medium" >Item Name</label>
                 <input
