@@ -1,3 +1,6 @@
+
+
+
 <div class="mt-20 flex">
     <div class="flex flex-col my-2 mx-5">
         <div class="">
@@ -29,21 +32,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tbody>
                     <?php foreach ($items as $item) : ?>
-                        <tr class="border-b-2 border-black whitespace-nowrap text-center">
+                        <tr class="border-b-2 border-[#9F9F9F] whitespace-nowrap text-center">
                             <td class="py-5"><?= $item["itemId"] ?></td>
                             <td class=""><?= $item["itemName"] ?></td>
                             <td class=""><?= $item["category"] ?></td>
-                            <td class=""><?= $item["price"] ?></td>
-                            <td class=""><?= $item["stock"] ?></td>
+                            <td><?php echo 'Rp' . number_format($item["price"], 0, ',', '.'); ?></td>
+                            <td class="">  
+                                <input disabled type="number" value="<?= $item["stock"] ?>" id="stockInput<?= $item["itemId"] ?>" class="w-[100px] text-center rounded-[6px] bg-[#F2DFD8]">                              
+                            </td>
                             <td class="">
-                                <button class="bg-[#123D6A] p-2 rounded-[6px]">
+                                <!-- Edit Button -->
+                                <button id="editbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#123D6A] p-2 rounded-[6px]">
                                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M5 12.24L0.5 13.5L1.76 9.00002L10 0.800021C10.0931 0.704775 10.2044 0.629096 10.3271 0.577429C10.4499 0.525761 10.5818 0.499146 10.715 0.499146C10.8482 0.499146 10.9801 0.525761 11.1029 0.577429C11.2256 0.629096 11.3369 0.704775 11.43 0.800021L13.2 2.58002C13.2937 2.67298 13.3681 2.78359 13.4189 2.90544C13.4697 3.0273 13.4958 3.15801 13.4958 3.29002C13.4958 3.42203 13.4697 3.55274 13.4189 3.6746C13.3681 3.79646 13.2937 3.90706 13.2 4.00002L5 12.24Z" stroke="white" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
-
                                 </button>
+
                                 <form action="/delete/<?= $item['itemId']; ?>" method="ost">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <button action="/delete/<?= $item['itemId']; ?>" class="bg-[#AB3B61] p-2 rounded-[6px]">
@@ -56,21 +61,102 @@
                                         </svg>
                                     </button>
                                 </form>
+
+
+
+                                <!-- Cancel Button -->
+                                <button hidden id="cancelbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#AB3B61] p-2 rounded-[6px]">
+                                    <svg width="14" height="14" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_2345_42)">
+                                    <path d="M6.44482 7.06018L14.322 14.9374" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.06055 14.5551L13.9397 6.67586" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_2345_42">
+                                    <rect width="12" height="15.2308" fill="white" transform="translate(0.372559 9.47314) rotate(-45)"/>
+                                    </clipPath>
+                                    </defs>
+                                    </svg>
+
+                                </button>
+
+                                <!-- Save Button -->
+                                <button hidden id="savebutton<?= $item['itemId'] ?>" onclick="saveUpdate(<?= $item['itemId'] ?>)" class="bg-[#32E039] p-2 rounded-[6px]">
+                                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M0.5 8.55005L3.23 12.06C3.32212 12.1797 3.44016 12.277 3.57525 12.3446C3.71034 12.4121 3.85898 12.4482 4.01 12.45C4.15859 12.4518 4.3057 12.4203 4.44063 12.3581C4.57555 12.2958 4.6949 12.2042 4.79 12.09L13.5 1.55005" stroke="#000001" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+
                             </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
-                </tbody>
             </table>
-            <div class="mt-8 py-5 text-[15px]">
-                <button class="px-5">
-                    Previous page
-                </button>
-                <?= $pager->links() ?>
-                <button class="px-5">
-                    Next page
-                </button>
+            <script> 
+
+            
+            function toggleEditMode(itemId) {
+                var stockInput = document.getElementById('stockInput' + itemId);
+                stockInput.disabled = !stockInput.disabled;
+                stockInput.classList.toggle('bg-[#F2DFD8]');
+
+                var editButton = document.getElementById('editbutton' + itemId);
+                editButton.hidden = !editButton.hidden;
+
+                var deletebutton = document.getElementById('deletebutton' + itemId);
+                deletebutton.hidden = !deletebutton.hidden;
+                
+                var cancelbutton = document.getElementById('cancelbutton' + itemId);
+                cancelbutton.hidden = !cancelbutton.hidden;
+
+                var savebutton = document.getElementById('savebutton' + itemId);
+                savebutton.hidden = !savebutton.hidden;
+            }
+
+            function getStockValue(itemId) {
+                var stockInput = document.getElementById('stockInput' + itemId);
+                return stockInput.value;
+            }
+
+            function saveUpdate(itemId) {
+                // Get the updated stock value
+                var updatedStock = getStockValue(itemId);
+
+                // Make an AJAX request to update the item in the database
+                fetch(`/item/update/${itemId}`, {
+                    method: 'POST',
+                    body: JSON.stringify({ stock: updatedStock }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Handle the response (e.g., show a success message)
+                    console.log(data);
+                })
+                .catch(error => {
+                    // Handle errors
+                    console.error('Error:', error);
+                });
+
+                
+
+                // Toggle back to non-edit mode
+                toggleEditMode(itemId);
+
+                location.reload();
+            }
+
+
+            </script>
+            
+            <div class="mt-8 py-5 text-[15px] flex">
+                
+                <?=$pager->simpleLinks()?>
+                
             </div>
+
         </div>
     </div>
 </div>

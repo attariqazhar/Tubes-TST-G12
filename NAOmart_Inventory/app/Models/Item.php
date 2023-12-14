@@ -17,17 +17,16 @@ class Item extends Model
         return $this->findAll();
     }
 
-public function getPaginated($num, $keyword=null){
-    $builder= $this->builder();
-    if ($keyword!=''){
-        $builder->like('itemName',$keyword);
-        $builder->orLike('itemId',$keyword);
+    public function getPaginated($num, $keyword=null){
+        $builder= $this->builder();
+        if ($keyword!=''){
+            $builder->like('itemName',$keyword);
+            $builder->orLike('itemId',$keyword);
+        }
+        return ['items'=>$this->paginate($num),
+                'pager'=>$this->pager,];
+                
     }
-    return ['items'=>$this->paginate($num),
-            'pager'=>$this->pager,];
-            
-    
-}
 
     public function getNumberOfItems() {
         return $this->countAllResults(); 
