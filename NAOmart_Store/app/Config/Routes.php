@@ -12,4 +12,8 @@ $routes->get('/logout', 'CustomerController::logout');
 $routes->post('/login_action', 'CustomerController::login_action');
 $routes->post('/logout', 'CustomerController::logout');
 $routes->get('/transaction','TransactionController::showTransactionHistory');
+$routes->get('/transactionAPI/transactionData','TransactionAPI::sendTransactionData');
+$routes->get('/transactionAPI/bestSeller','TransactionAPI::sendBestSelling');
+$routes->get('/transactionAPI/totalIncome','TransactionAPI::sendTotalIncome');
+
 
