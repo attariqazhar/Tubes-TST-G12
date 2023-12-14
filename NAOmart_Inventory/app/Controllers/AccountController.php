@@ -7,6 +7,9 @@ class AccountController extends BaseController
 {
     public function index() 
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('login');
+        } 
         echo view('layout/header');
         echo view('layout/sidebar');
         echo view('profilePage/profile');

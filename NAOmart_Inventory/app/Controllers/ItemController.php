@@ -26,6 +26,9 @@ class ItemController extends BaseController
 
     public function index()
     {
+        if (session()->get('username') == '') {
+            return redirect()->to('login');
+        } 
         $itemsData = $this->getItems();
         $lowStockItems = $this->getLowStock();
         $data = array_merge($itemsData, $lowStockItems);
