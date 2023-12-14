@@ -7,11 +7,11 @@ use CodeIgniter\Router\RouteCollection;
  */
 
 
-$routes->get('/', 'Pages::index');
-$routes->post('/addItem', 'Pages::addItem');
-$routes->get('/profile', 'Pages::profile');
-$routes->post('/addItem', 'Pages::addItem');
-$routes->get('/profile', 'Pages::profile');
+// $routes->get('/', 'Pages::index');
+// $routes->post('/addItem', 'Pages::addItem');
+// $routes->get('/profile', 'Pages::profile');
+// $routes->post('/addItem', 'Pages::addItem');
+// $routes->get('/profile', 'Pages::profile');
 
 $routes->get('/', 'ItemController::index');
 $routes->get('/profile', 'AccountController::index');
