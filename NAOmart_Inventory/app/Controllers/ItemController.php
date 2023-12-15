@@ -83,24 +83,25 @@ class ItemController extends BaseController
     }
 
 
-function getTotalIncomeFromApi()
-{
-    $apiUrl = 'http://localhost:8080//transactionAPI/totalIncome';
-    // Set up the HTTP headers
-    $options = [
-        'http' => [
-            'method' => 'GET', // Adjust the HTTP method if needed
-            'header' => [
-                'Content-type: application/json',
+    function getTotalIncomeFromApi()
+    {
+        $apiUrl = 'http://localhost:8080//transactionAPI/totalIncome';
+        // Set up the HTTP headers
+        $options = [
+            'http' => [
+                'method' => 'GET', // Adjust the HTTP method if needed
+                'header' => [
+                    'Content-type: application/json',
+                ],
             ],
-        ],
-    ];
+        ];
 
-    // Create a stream context
-    $context = stream_context_create($options);
+        // Create a stream context
+        $context = stream_context_create($options);
 
-    // Make the HTTP request
-    $response = file_get_contents($apiUrl, false, $context);
+        // Make the HTTP request
+        $response = file_get_contents($apiUrl, false, $context);
+
 
     // Check for errors
     $response = file_get_contents($apiUrl);

@@ -20,12 +20,24 @@ class TransactionController extends BaseController {
         echo view('layout/footer');
     }
 
-    public function showTransactionHistory()
+    // public function showTransactionHistory()
+    // {
+    //     $model = model(Transaction::class);
+    //     // $customer = strtolower(session('username'));
+    //     $customer = session('email');
+    //     $data['transactions'] = $model->getCustomerTransactionHistory($customer);
+    //     return view("/profile-and-transaction/transaction",$data);
+    // }
+
+    public function getBestSellers()
     {
-        $model = model(Transaction::class);
-        // $customer = strtolower(session('username'));
-        $customer = session('email');
-        $data['transactions'] = $model->getCustomerTransactionHistory($customer);
-        return view("/profile-and-transaction/transaction",$data);
+        $db = \Config\Database::connect();
+        $query = $db->table('transaction')
+                    ->select("itemName,itemId,SUM(amount) as totalAmount")
+                    ->groupby("itemName,itemId")
+                    ->orderBy('totalAmount','desc')
+                    ->limit(3)
+                    ->get();
+        $result = $query->getResult();
     }
 }
