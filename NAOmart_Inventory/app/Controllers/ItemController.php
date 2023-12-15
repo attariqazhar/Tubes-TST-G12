@@ -8,7 +8,7 @@ class ItemController extends BaseController
     public function getLowStock()
     {
         $model = model(Item::class);
-        $lowStockThreshold = 5;
+        $lowStockThreshold = 10;
         $lowStockItems = $model->where('stock <', $lowStockThreshold)->findAll();
         $data = ['lowStockItems' => $lowStockItems];
         return $data;
@@ -34,22 +34,22 @@ class ItemController extends BaseController
         $totalIncome= $this->getTotalIncomeFromApi();
         $bestSellers = $this->getBestSellersFromApi();
         
-        $data = array_merge($itemsData, $lowStockItems,$totalIncome,$bestSellers);
+        // $data = array_merge($itemsData, $lowStockItems,$totalIncome,$bestSellers);
+        $data = array_merge($itemsData, $lowStockItems,$totalIncome);
         $data['bestSellers'] = $bestSellers;
-        var_dump($bestSellers); 
         echo view('layout/header');
         echo view('layout/sidebar');
         echo view('dashboardPage/dashboard',$data);
         echo view('layout/footer');
     }
 
-    public function updateStock($itemId)
+    public function updateStock($itemId, $stock)
     {
         // $model = model(Item::class);
         // $model->update($itemId, ['stock' => $stock]);
         // return redirect()->to('/');
         // Get the stock value from the request
-        $stock = $this->request->getJSON(true)['stock'];
+        // $stock = $this->request->getJSON(true)['stock'];
 
         // Update the item in the database
         $model = model(Item::class);
@@ -103,29 +103,30 @@ class ItemController extends BaseController
         $response = file_get_contents($apiUrl, false, $context);
 
 
-    // Check for errors
-    $response = file_get_contents($apiUrl);
-    $responseData = json_decode($response, true);
+        // Check for errors
+        $response = file_get_contents($apiUrl);
+        $responseData = json_decode($response, true);
 
-    // Check for errors in the API response
-    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['totalIncome'][0]['SUM(totalPrice)'])) {
-        return ['totalIncome' => $responseData['totalIncome'][0]['SUM(totalPrice)']];
-    } else {
-        return ['error' => 'Error fetching total income'];
+        // Check for errors in the API response
+        if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['totalIncome'][0]['SUM(totalPrice)'])) {
+            return ['totalIncome' => $responseData['totalIncome'][0]['SUM(totalPrice)']];
+        } else {
+            return ['error' => 'Error fetching total income'];
+        }
     }
-}
 
-function getBestSellersFromApi()
-{
-    $apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
-    $response = file_get_contents($apiUrl);
-    $responseData = json_decode($response, true);
+    function getBestSellersFromApi()
+    {
+        $apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
+        $response = file_get_contents($apiUrl);
+        $responseData = json_decode($response, true);
 
-    // Check for errors in the API response
-    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['bestSellers'])) {
-        return $responseData['bestSellers'];
-    } else {
-        return ['error' => 'Error fetching best-selling items'];
+        // Check for errors in the API response
+        if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['bestSeller'])) {
+            return $responseData['bestSeller'];
+        }
+        // } else {
+        //     return ['error' => 'Error fetching best-selling items'];
+        // }
     }
-}
 }

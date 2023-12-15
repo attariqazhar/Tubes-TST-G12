@@ -24,6 +24,8 @@ $routes->post('/login_action', 'AccountController::login_action');
 $routes->post('/logout', 'AccountController::logout');
 $routes->get('delete/(:num)', 'Pages::delete/$1');
 $routes->post('/addItem', 'ItemController::addItem');
+$routes->post('item/updateStock/(:num)/(:num)', 'ItemController::updateStock/$1/$2');
+
 
 // API routes 
 $routes->get('/API/getItems', 'ItemAPI::getItems');

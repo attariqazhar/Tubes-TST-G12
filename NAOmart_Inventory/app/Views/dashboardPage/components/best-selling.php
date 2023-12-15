@@ -1,26 +1,4 @@
-<?php
 
-use App\Controllers\ItemController;
-
-function getBestSellersFromApi($apiUrl)
-{
-    $response = file_get_contents($apiUrl);
-    $responseData = json_decode($response, true);
-
-    // Check for errors in the API response
-    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['bestSeller'])) {
-        return $responseData['bestSeller'];
-    } else {
-        return ['error' => 'Error fetching best-selling items'];
-    }
-}
-
-// Replace 'your-api-base-url' with the actual base URL of your CodeIgniter 4 API
-$apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
-
-// Fetch the best-selling items
-$bestSellers = getBestSellersFromApi($apiUrl);
-?>
 
 <div class="rounded-[15px] flex bg-[#EDC8B8] text-[#AB3B61] shadow-xl w-[500px]">
     <div class="flex items-center mx-5">

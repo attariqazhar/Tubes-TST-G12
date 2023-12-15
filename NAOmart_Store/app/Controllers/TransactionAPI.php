@@ -2,6 +2,7 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Transaction;
+use App\Controllers\TransactionController;
 
 class TransactionAPI extends ResourceController
 {
@@ -25,11 +26,14 @@ class TransactionAPI extends ResourceController
                     ->limit(3)
                     ->get();
 
-        $result = $query->getResult();
+        $result = $query->getResultArray();
+        
+        $result = (new TransactionController())->getBestSellerItems()['bestSellerItems'];
         $data =[
             'message' => 'success',
             'bestSeller' => $result
         ];
+        
         return $this->respond($data,200);
     }
 
