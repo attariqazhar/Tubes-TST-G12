@@ -18,6 +18,7 @@ class Item extends Model
     }
 
     public function getPaginated($num, $keyword=null){
+        
         $builder= $this->builder();
         if ($keyword!=''){
             $builder->like('itemName',$keyword);
