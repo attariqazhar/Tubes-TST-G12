@@ -70,15 +70,6 @@
                         <?php endforeach; ?>
                     </tbody>
                 </table>
-                <div class="mt-8 py-5 text-[15px]">
-                    <button class="px-5">
-                        Previous page
-                    </button>
-                    
-                    <button class="px-5">
-                        Next page
-                    </button>
-                </div>
             <?php else: ?>
                 <p>You haven't bought anything...</p>
             <?php endif; ?>
