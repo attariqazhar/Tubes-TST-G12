@@ -77,9 +77,10 @@ class ItemController extends BaseController
         
     }
 
-    
-function getTotalIncomeFromApi($apiUrl)
+
+function getTotalIncomeFromApi()
 {
+    $apiUrl = 'http://localhost:8080//transactionAPI/totalIncome';
     // Set up the HTTP headers
     $options = [
         'http' => [
@@ -109,8 +110,13 @@ function getTotalIncomeFromApi($apiUrl)
         return $responseData;
     }
 
-    // Return the total income value
-    return $responseData['totalIncome'];
-}
+    // Extract the "SUM(totalPrice)" value
+    $totalIncomeValue = isset($responseData['totalIncome'][0]['SUM(totalPrice)'])
+        ? $responseData['totalIncome'][0]['SUM(totalPrice)']
+        : null;
 
+    // Return the total income value
+    $data = ['totalIncome' => $totalIncomeValue];
+    return $data;
+}
 }

@@ -1,3 +1,27 @@
+<?php
+
+use App\Controllers\ItemController;
+
+function getBestSellersFromApi($apiUrl)
+{
+    $response = file_get_contents($apiUrl);
+    $responseData = json_decode($response, true);
+
+    // Check for errors in the API response
+    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['bestSeller'])) {
+        return $responseData['bestSeller'];
+    } else {
+        return ['error' => 'Error fetching best-selling items'];
+    }
+}
+
+// Replace 'your-api-base-url' with the actual base URL of your CodeIgniter 4 API
+$apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
+
+// Fetch the best-selling items
+$bestSellers = getBestSellersFromApi($apiUrl);
+?>
+
 <div class="rounded-[15px] flex bg-[#EDC8B8] text-[#AB3B61] shadow-xl w-[500px]">
     <div class="flex items-center mx-5">
         <svg class="mx-5 my-5" width="60" height="60" viewBox="0 0 74 74" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -7,9 +31,12 @@
     <div class="flex flex-col justify-center items-center my-2 mx-5">
         <h1 class="text-[25px]">Best Selling</h1>
         <div>
-            <p class="text-[30px] font-extrabold">1. Spinach (200)</p>
-            <p class="text-[30px] font-extrabold">2. Pen (200)</p>
-            <p class="text-[30px] font-extrabold">3. Chocolate (200)</p>
+            <p class="text-[30px] font-extrabold"><?php echo isset($bestSellers[0]['itemName'], $bestSellers[0]['totalAmount']) ? '1. ' . $bestSellers[0]['itemName'] . " (". $bestSellers[0]['totalAmount'] . ")"
+    : '1. N/A'; ?></p>
+            <p class="text-[30px] font-extrabold"><?php echo isset($bestSellers[1]['itemName'], $bestSellers[1]['totalAmount']) ? '2. ' . $bestSellers[1]['itemName'] . " (". $bestSellers[1]['totalAmount'] . ")"
+    : '2. N/A'; ?></p>
+            <p class="text-[30px] font-extrabold"><?php echo isset($bestSellers[2]['itemName'], $bestSellers[2]['totalAmount']) ? '3. ' . $bestSellers[2]['itemName'] . " (". $bestSellers[2]['totalAmount'] . ")"
+    : '3. N/A'; ?></p>
         </div>
     </div>
 </div>
