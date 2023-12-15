@@ -29,7 +29,7 @@ class TransactionController extends BaseController {
     //     return view("/profile-and-transaction/transaction",$data);
     // }
 
-    public function getBestSellers()
+    public function getBestSellerItems()
     {
         $db = \Config\Database::connect();
         $query = $db->table('transaction')
@@ -38,6 +38,10 @@ class TransactionController extends BaseController {
                     ->orderBy('totalAmount','desc')
                     ->limit(3)
                     ->get();
-        $result = $query->getResult();
+        $result = $query->getResultArray();
+        $bestSeller = [
+            'bestSellerItems' => $result
+        ];
+        return $bestSeller;
     }
 }

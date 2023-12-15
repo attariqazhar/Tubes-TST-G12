@@ -6,6 +6,21 @@ Use App\Models\Transaction;
 
 class ItemController extends BaseController
 {
+    public function getLowStock()
+    {
+        $api_link = 'http://localhost:8081/API/getLowStock';
+        $json_data = file_get_contents($api_link);
+        
+        $decoded_data = json_decode($json_data, true);
+    
+        if (is_array($decoded_data) && array_key_exists('items', $decoded_data)) {
+            $data['lowStockItemId'] = $decoded_data['items'];
+        } else {
+            echo "Invalid data format.";
+        }
+        return $data;
+    }
+
     public function getPicture()
     {
         $links = [
@@ -16,7 +31,6 @@ class ItemController extends BaseController
         ];
         return $links;
     }
-
 
     public function getItems()
     {
@@ -58,6 +72,7 @@ class ItemController extends BaseController
 
     public function index()
     {
+        
         $items = $this->getItems();
         $links = $this->getPicture();
         $data = array_merge($items,$links);

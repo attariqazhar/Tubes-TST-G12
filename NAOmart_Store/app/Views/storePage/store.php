@@ -1,21 +1,21 @@
 <div class="mb-10">
     <div class="flex justify-between items-center mt-4">
-    <div class="ml-5 mt-8">
-        <form action="search" method="get" class=" flex items-center bg-white rounded-lg border-2 py-1 px-1 md:px-2 w-[200px]">
-            <div>
-                <CiSearch className="text-xl mr-2" />
-                <input type="text" name="keyword" id="default-search" class="text-sm md:px-2 flex-grow focus:outline-none" placeholder="Find your items" />
-            </div>
-            <div>
-                <button type="submit">
-                    <svg width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.98338 17.5C14.3556 17.5 17.9 13.9556 17.9 9.58335C17.9 5.2111 14.3556 1.66669 9.98338 1.66669C5.61112 1.66669 2.06671 5.2111 2.06671 9.58335C2.06671 13.9556 5.61112 17.5 9.98338 17.5Z" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M18.7334 18.3334L17.0667 16.6667" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-        </form>
-    </div>
+        <div class="ml-5 mt-8">
+            <form action="search" method="get" class=" flex items-center bg-white rounded-lg border-2 py-1 px-1 md:px-2 w-[200px]">
+                <div>
+                    <CiSearch className="text-xl mr-2" />
+                    <input type="text" name="keyword" id="default-search" class="text-sm md:px-2 flex-grow focus:outline-none" placeholder="Find your items" />
+                </div>
+                <div>
+                    <button type="submit">
+                        <svg width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.98338 17.5C14.3556 17.5 17.9 13.9556 17.9 9.58335C17.9 5.2111 14.3556 1.66669 9.98338 1.66669C5.61112 1.66669 2.06671 5.2111 2.06671 9.58335C2.06671 13.9556 5.61112 17.5 9.98338 17.5Z" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M18.7334 18.3334L17.0667 16.6667" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </div>
         <div class="flex justify-center w-screen mr-[260px]">
             <div class="font-maven text-[50px] italic font-extrabold text-[#017FCC] flex justify-center space-x-5">
                 <a href="/">NAOmart</a>
@@ -44,30 +44,41 @@
         </div>
         <div class="flex flex-wrap space-x-5">
             <!-- ini template card -->
-            <?php foreach ($itemsData as $item):?>
-            
+            <?php foreach ($bestSellerItems as $bestSellerItem):?>
                 <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-xl">
                     <div class="flex justify-center my-5">
-                        <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
+                        <?php if ($bestSellerItem['category'] == "Toys"): ?>
+                            <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[150px] h-[150px]]" />
+                        <?php elseif ($bestSellerItem['category'] == "Food & Drinks"): ?>
+                            <img src="https://imgur.com/UyXPCpN.jpg" title="source: imgur.com" class="w-[150px] h-[150px]" />
+                        <?php elseif ($bestSellerItem['category'] == "Households"): ?>
+                            <img src="https://i.imgur.com/usbw5zM.jpg" title="source: imgur.com" class="w-[150px] h-[150px]" />
+                        <?php elseif ($bestSellerItem['category'] == "Stationary"): ?>
+                            <img src="https://imgur.com/cVFmMml.jpg" title="source: imgur.com" class="w-[150px] h-[150px]" />
+                        <?php endif; ?>
                     </div>
                     <div class="ml-3">
-                        <p class="text-[20px]">Lego Star Wars</p>
-                        <p class="text-sm">Toys</p>
-                        <p class="text-[15px]">Rp 1.000.000</p>
+                        <p class="text-[20px]"><?=$bestSellerItem['itemName']?></p>
+                        <p class="text-sm"><?=$bestSellerItem['category']?></p>
+                        <p><?php echo 'Rp' . number_format($bestSellerItem["price"], 0, ',', '.'); ?></p>
                     </div>
                     <div class="flex justify-between mx-3 mt-3">
                         <div class="flex border border-[#FFC220] h-[30px]">
                             <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black"/>
+                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black" />
                                 </svg>
                             </button>
                             <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
                                 <p>0</p>
                             </div>
                             <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z" fill="black"/>
+                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z"
+                                        fill="black" />
                                 </svg>
 
                             </button>
@@ -75,19 +86,12 @@
                         <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                     </div>
                 </div>
-            
             <?php endforeach;?>
-            <!-- ini template card -->
-
         </div>
     </div>
     <div class="mt-3">
         <div id="catalogue"  class="ml-5 text-[35px] text-[#5E81D1]">
             Catalogue
-        </div>
-
-        <div hidden id="search" class="ml-5 text-[35px] text-black">
-            Search result for <?php $keyword?>
         </div>
         <div class="flex flex-wrap">
             <?php foreach ($itemsData as $item):?>
