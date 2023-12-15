@@ -21,6 +21,16 @@ class ItemController extends BaseController
         return $data;
     }
 
+    public function getPicture()
+    {
+        $links = [
+            'toysUrl' => 'https://i.imgur.com/cl1RPTQ.jpg',
+            'householdsUrl' => 'https://i.imgur.com/usbw5zM.jpg',
+            'stationaryUrl' => 'https://imgur.com/cVFmMml',
+            'fndUrl' => 'https://imgur.com/UyXPCpN'
+        ];
+        return $links;
+    }
 
     public function getItems()
     {
@@ -62,6 +72,7 @@ class ItemController extends BaseController
 
     public function index()
     {
+        
         $items = $this->getItems();
         $links = $this->getPicture();
         $data = array_merge($items,$links);

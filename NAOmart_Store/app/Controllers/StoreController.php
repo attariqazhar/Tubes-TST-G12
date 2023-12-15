@@ -29,6 +29,7 @@ class StoreController extends Controller
 
         return ['bestSellerItems' => $bestSellerItems];
     }
+    
     public function index()
     {
         $items = $this->itemController->getItems();
