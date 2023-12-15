@@ -804,6 +804,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
+.bg-\[\#F2DFD8\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(242 223 216 / var(--tw-bg-opacity));
+}
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
