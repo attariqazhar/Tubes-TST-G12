@@ -57,33 +57,45 @@
                             <img src="https://imgur.com/cVFmMml.jpg" title="source: imgur.com" class="w-[150px] h-[150px]" />
                         <?php endif; ?>
                     </div>
-                    <div class="ml-3">
+                    <div class="ml-3 flex justify-between">
+                        <div>
                         <p class="text-[20px]"><?=$bestSellerItem['itemName']?></p>
                         <p class="text-sm"><?=$bestSellerItem['category']?></p>
                         <p><?php echo 'Rp' . number_format($bestSellerItem["price"], 0, ',', '.'); ?></p>
+                        </div>
+                        <div class="mr-5">
+                            <p class="text-sm">Stock: <?=$bestSellerItem['stock']?></p>
+                        </div>
                     </div>
-                    <div class="flex justify-between mx-3 mt-3">
-                        <div class="flex border border-[#FFC220] h-[30px]">
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black" />
+                    <div class="flex justify-end mx-3 mt-3">
+                        <!-- Buy Button -->
+                        <button id="buybutton<?= $bestSellerItem['itemId'] ?>" onclick="toggleEditMode(<?= $bestSellerItem['itemId'] ?>)" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                            Order
+                        </button>     
+                        <div hidden id="checkoutcancel" class="flex justify-center items-center space-x-2">
+                            <!-- Input Form -->
+                            <input hidden type="number" placeholder="Input amount" id="orderInput<?= $bestSellerItem["itemId"] ?>" class="w-[125px] h-[24px] rounded-[6px] border border-[#6C6C6C] mr-5 pl-2">    
+
+                            <!-- Cancel Button -->
+                            <button hidden id="cancelbutton<?= $bestSellerItem['itemId'] ?>" onclick="toggleEditMode(<?= $bestSellerItem['itemId'] ?>)" class="rounded-[6px] w-[24px] h-[24px] bg-[#AB3B61] pl-[5px]">
+                                <svg width="14" height="14" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_2345_42)">
+                                    <path d="M6.44482 7.06018L14.322 14.9374" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.06055 14.5551L13.9397 6.67586" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_2345_42">
+                                    <rect width="12" height="15.2308" fill="white" transform="translate(0.372559 9.47314) rotate(-45)"/>
+                                    </clipPath>
+                                    </defs>
                                 </svg>
                             </button>
-                            <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
-                                <p>0</p>
-                            </div>
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z"
-                                        fill="black" />
-                                </svg>
 
+                            <!-- Checkout Button -->
+                            <button hidden id="checkoutbutton<?= $bestSellerItem['itemId'] ?>" onclick="" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                                Checkout
                             </button>
                         </div>
-                        <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                     </div>
                 </div>
             <?php endforeach;?>
@@ -138,33 +150,69 @@
                             <img src="https://imgur.com/cVFmMml.jpg" title="source: imgur.com" class="w-[150px] h-[150px]" />               
                         <?php endif;?>
                     </div>  
-                    <div class="ml-3">
+                    <div class="ml-3 flex justify-between">
+                        <div>
                         <p class="text-[20px]"><?=$item['itemName']?></p>
                         <p class="text-sm"><?=$item['category']?></p>
                         <p><?php echo 'Rp' . number_format($item["price"], 0, ',', '.'); ?></p>
+                        </div>
+                        <div class="mr-5">
+                            <p class="text-sm">Stock: <?=$item['stock']?></p>
+                        </div>
                     </div>
-                    <div class="flex justify-between mx-3 mt-3">
-                        <div class="flex border border-[#FFC220] h-[30px]">
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black"/>
+                    <div class="flex justify-end mx-3 mt-3">
+                        <!-- Buy Button -->
+                        <button id="buybutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                            Order
+                        </button>     
+                        <div hidden id="checkoutcancel" class="flex justify-center items-center space-x-2">
+                            <!-- Input Form -->
+                            <input hidden type="number" placeholder="Input amount" id="orderInput<?= $item["itemId"] ?>" class="w-[125px] h-[24px] rounded-[6px] border border-[#6C6C6C] mr-5 pl-2">    
+
+                            <!-- Cancel Button -->
+                            <button hidden id="cancelbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="rounded-[6px] w-[24px] h-[24px] bg-[#AB3B61] pl-[5px]">
+                                <svg width="14" height="14" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g clip-path="url(#clip0_2345_42)">
+                                    <path d="M6.44482 7.06018L14.322 14.9374" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.06055 14.5551L13.9397 6.67586" stroke="#FBFBFB" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </g>
+                                    <defs>
+                                    <clipPath id="clip0_2345_42">
+                                    <rect width="12" height="15.2308" fill="white" transform="translate(0.372559 9.47314) rotate(-45)"/>
+                                    </clipPath>
+                                    </defs>
                                 </svg>
                             </button>
-                            <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
-                                <p>0</p>
-                            </div>
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z" fill="black"/>
-                                </svg>
 
+                            <!-- Checkout Button -->
+                            <button hidden id="checkoutbutton<?= $item['itemId'] ?>" onclick="" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                                Checkout
                             </button>
                         </div>
-                        <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
                     </div>
                 </div>
             <?php endforeach;?>     
         </div>
     </div>
+
+    <script>
+        function toggleEditMode(itemId) {
+            var buybutton = document.getElementById("buybutton" + itemId);
+            buybutton.hidden = !buybutton.hidden;
+
+            var orderInput = document.getElementById("orderInput" + itemId);
+            orderInput.hidden = !orderInput.hidden;
+
+            var checkoutcancel = document.getElementById("checkoutcancel");
+            checkoutcancel.hidden = !checkoutcancel.hidden;
+
+            var cancelbutton = document.getElementById("cancelbutton" + itemId);
+            cancelbutton.hidden = !cancelbutton.hidden;
+
+            var checkoutbutton = document.getElementById("checkoutbutton" + itemId);
+            checkoutbutton.hidden = !checkoutbutton.hidden;
+        }
+
+    </script>
 
 </div>
