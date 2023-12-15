@@ -18,6 +18,7 @@ class Item extends Model
     }
 
     public function getPaginated($num, $keyword=null){
+        
         $builder= $this->builder();
         if ($keyword!=''){
             $builder->like('itemName',$keyword);
@@ -41,10 +42,10 @@ class Item extends Model
     }
 
     public function getMaxId()
-{
-    $query = $this->db->query('SELECT MAX(itemId) as max_id FROM item');
-    $result = $query->getRow();
-    
-    return $result->max_id;
-}
+    {
+        $query = $this->db->query('SELECT MAX(itemId) as max_id FROM item');
+        $result = $query->getRow();
+        
+        return $result->max_id;
+    }
 }
