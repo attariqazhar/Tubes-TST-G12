@@ -38,59 +38,12 @@
     </div>
 
     <hr class="h-1 my-4 mx-5 bg-[#C0BDBD] ">
-    <div id="recommended" class="mt-3">
-        <div class="ml-5 text-[40px] font-extrabold text-[#F16B44]">
-            Recommended Products
-        </div>
-        <div class="flex flex-wrap space-x-5">
-            <!-- ini template card -->
-            <?php foreach ($itemsData as $item):?>
-            
-                <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-xl">
-                    <div class="flex justify-center my-5">
-                        <img src="https://i.imgur.com/cl1RPTQ.jpg" title="source: imgur.com" class="w-[165px]" />
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-[20px]">Lego Star Wars</p>
-                        <p class="text-sm">Toys</p>
-                        <p class="text-[15px]">Rp 1.000.000</p>
-                    </div>
-                    <div class="flex justify-between mx-3 mt-3">
-                        <div class="flex border border-[#FFC220] h-[30px]">
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="13" height="2" viewBox="0 0 13 2" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12.0416 1.74847H0.958313V0.248474H12.0416V1.74847Z" fill="black"/>
-                                </svg>
-                            </button>
-                            <div class="flex justify-center items-center border border-[#FFC220] w-[30px] h-[30px]">
-                                <p>0</p>
-                            </div>
-                            <button class="border border-[#FFC220] w-[30px] h-[30px] flex justify-center items-center">
-                                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M10 5.71429H5.71429V10H4.28571V5.71429H0V4.28571H4.28571V0H5.71429V4.28571H10V5.71429Z" fill="black"/>
-                                </svg>
-
-                            </button>
-                        </div>
-                        <button class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">Order</button>
-                    </div>
-                </div>
-            
-            <?php endforeach;?>
-            <!-- ini template card -->
-
-        </div>
-    </div>
     <div class="mt-3">
-        <div id="catalogue"  class="ml-5 text-[35px] text-[#5E81D1]">
-            Catalogue
-        </div>
-
-        <div hidden id="search" class="ml-5 text-[35px] text-black">
-            Search result for <?php $keyword?>
+        <div id="search" class="ml-5 text-[35px] text-black">
+            Search result for "<?= $keyword ?>"
         </div>
         <div class="flex flex-wrap">
-            <?php foreach ($itemsData as $item):?>
+            <?php foreach ($items as $item):?>
                 <div class="ml-5 mt-3 h-[325px] w-[300px] border border-[#6C6C6C] rounded-[15px] shadow-xl">
                     <?php if ($item['stock'] < 10):?>
                         <div class="absolute ml-[230px] ">

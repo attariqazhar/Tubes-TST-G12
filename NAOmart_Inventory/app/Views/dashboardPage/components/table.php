@@ -12,10 +12,12 @@
                     <input type="text" name="keyword" id="default-search" class="text-sm md:px-2 flex-grow focus:outline-none" placeholder="Search" />
                 </div>
                 <div>
-                    <button type="submit"><svg width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <button type="submit">
+                        <svg width="20" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9.98338 17.5C14.3556 17.5 17.9 13.9556 17.9 9.58335C17.9 5.2111 14.3556 1.66669 9.98338 1.66669C5.61112 1.66669 2.06671 5.2111 2.06671 9.58335C2.06671 13.9556 5.61112 17.5 9.98338 17.5Z" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             <path d="M18.7334 18.3334L17.0667 16.6667" stroke="#4C4C4C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg></button>
+                        </svg>
+                    </button>
                 </div>
             </form>
         </div>
