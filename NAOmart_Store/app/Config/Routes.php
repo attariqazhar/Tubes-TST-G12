@@ -17,5 +17,6 @@ $routes->get('/transaction','TransactionController::showTransactionHistory');
 $routes->get('/transactionAPI/transactionData','TransactionAPI::sendTransactionData');
 $routes->get('/transactionAPI/bestSeller','TransactionAPI::sendBestSelling');
 $routes->get('/transactionAPI/totalIncome','TransactionAPI::sendTotalIncome');
+$routes->get('/search', 'ItemController::search');
 
 
