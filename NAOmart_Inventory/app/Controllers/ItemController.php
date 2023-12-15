@@ -31,7 +31,12 @@ class ItemController extends BaseController
         } 
         $itemsData = $this->getItems();
         $lowStockItems = $this->getLowStock();
-        $data = array_merge($itemsData, $lowStockItems);
+        $totalIncome= $this->getTotalIncomeFromApi();
+        $bestSellers = $this->getBestSellersFromApi();
+        
+        $data = array_merge($itemsData, $lowStockItems,$totalIncome,$bestSellers);
+        $data['bestSellers'] = $bestSellers;
+        var_dump($bestSellers); 
         echo view('layout/header');
         echo view('layout/sidebar');
         echo view('dashboardPage/dashboard',$data);
@@ -98,25 +103,28 @@ function getTotalIncomeFromApi()
     $response = file_get_contents($apiUrl, false, $context);
 
     // Check for errors
-    if ($response === false) {
-        return ['error' => 'Error making the request.'];
-    }
-
-    // Process the API response
+    $response = file_get_contents($apiUrl);
     $responseData = json_decode($response, true);
 
-    // Check if the API response has an error field
-    if (isset($responseData['error'])) {
-        return $responseData;
+    // Check for errors in the API response
+    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['totalIncome'][0]['SUM(totalPrice)'])) {
+        return ['totalIncome' => $responseData['totalIncome'][0]['SUM(totalPrice)']];
+    } else {
+        return ['error' => 'Error fetching total income'];
     }
+}
 
-    // Extract the "SUM(totalPrice)" value
-    $totalIncomeValue = isset($responseData['totalIncome'][0]['SUM(totalPrice)'])
-        ? $responseData['totalIncome'][0]['SUM(totalPrice)']
-        : null;
+function getBestSellersFromApi()
+{
+    $apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
+    $response = file_get_contents($apiUrl);
+    $responseData = json_decode($response, true);
 
-    // Return the total income value
-    $data = ['totalIncome' => $totalIncomeValue];
-    return $data;
+    // Check for errors in the API response
+    if (isset($responseData['message']) && $responseData['message'] === 'success' && isset($responseData['bestSellers'])) {
+        return $responseData['bestSellers'];
+    } else {
+        return ['error' => 'Error fetching best-selling items'];
+    }
 }
 }
