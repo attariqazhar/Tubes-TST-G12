@@ -5,6 +5,7 @@ use CodeIgniter\Model;
 class Transaction extends Model
 {
     protected $table = 'transaction';
+    protected $allowedFields = ['email', 'itemId', 'itemName', 'category','amount', 'totalPrice', 'transactionDate'];
 
     public function getDataTransaction(){
         return $this->findAll();

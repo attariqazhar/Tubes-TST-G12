@@ -46,4 +46,18 @@ class TransactionAPI extends ResourceController
         ];
         return $this->respond($data,200);
     }
+
+    public function makeTransaction()
+    {
+        $data = [
+            'transactionId' => $this->request->getVar('email'),
+            'email' => $this->request->getVar('email'),
+            'itemId' => $this->request->getVar('itemId'),
+            'itemName' => $this->request->getVar('itemName'),
+            'amount' => $this->request->getVar('amount'),
+            'totalPrice' => $this->request->getVar('totalPrice'),
+            'transactionDate' 
+        ];
+        return $data;
+    }
 }
