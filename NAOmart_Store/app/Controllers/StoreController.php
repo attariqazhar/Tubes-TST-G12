@@ -53,7 +53,7 @@ class StoreController extends Controller
         $this->transactionController->addTransaction($email, $item, $amount);
 
         $updatedStock = $item['stock'] - $amount;
-        $apiUrl = 'http://localhost:8081/API/update/' . $itemId . '/' . $updatedStock;
+        $apiUrl = 'http://localhost:8081/API/update/' . $itemId . '/' . $updatedStock . '/'. 'Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0';
         $data = [
             'stock' => $updatedStock
         ];
