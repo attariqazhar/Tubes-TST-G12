@@ -93,7 +93,7 @@
                                 </button>
 
                                 <!-- Checkout Button -->
-                                <button hidden id="checkoutbuttonbestseller<?= $bestSellerItem['itemId'] ?>" onclick="" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                                <button hidden id="checkoutbuttonbestseller<?= $bestSellerItem['itemId'] ?>" onclick="checkoutBestSeller(<?= $bestSellerItem['itemId'] ?>)" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
                                     Checkout
                                 </button>
                             </div>
@@ -170,8 +170,9 @@
                             </button>     
                             <div hidden id="checkoutcancel" class="flex justify-center items-center space-x-2">
                                 <!-- Input Form -->
+                               
                                 <input hidden type="number" placeholder="Input amount" id="orderInput<?= $item["itemId"] ?>" class="w-[125px] h-[24px] rounded-[6px] border border-[#6C6C6C] mr-5 pl-2" min="1" max="<?=$item['stock']?>">    
-
+                                
                                 <!-- Cancel Button -->
                                 <button hidden id="cancelbutton<?= $item['itemId'] ?>" onclick="toggleEditMode(<?= $item['itemId'] ?>)" class="rounded-[6px] w-[24px] h-[24px] bg-[#AB3B61] pl-[5px]">
                                     <svg width="14" height="14" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -188,7 +189,7 @@
                                 </button>
 
                                 <!-- Checkout Button -->
-                                <button hidden id="checkoutbutton<?= $item['itemId'] ?>" onclick="" action='' class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                                <button hidden id="checkoutbutton<?= $item['itemId'] ?>" onclick="checkout(<?= $item['itemId'] ?>)" action='' class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
                                     Checkout
                                 </button>
                             </div>
@@ -200,6 +201,72 @@
     </div>
 
     <script>
+        function getAmount(itemId) {
+            var orderAmount = document.getElementById("orderInput" + itemId);
+            return orderAmount.value;
+        }
+        function getAmountBestSeller(itemId) {
+            var orderAmount = document.getElementById("orderInputbestseller" + itemId);
+            return orderAmount.value;
+        }
+        function checkout(itemId) {
+            // Get the updated stock value
+            var updatedStock = getAmount(itemId);
+
+            // Make an AJAX request to update the item in the database
+            fetch(`/makeTransaction/${itemId}/${updatedStock}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response (e.g., show a success message)
+                console.log(data);
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error);
+
+                // Optionally, handle errors and provide user feedback
+            });
+            // Toggle back to non-edit mode
+            toggleEditMode(itemId);
+
+            // Reload the page to reflect the updated stock
+            location.reload();
+        }
+        function checkoutBestSeller(itemId) {
+            // Get the updated stock value
+            var updatedStock = getAmountBestSeller(itemId);
+
+            // Make an AJAX request to update the item in the database
+            fetch(`/makeTransaction/${itemId}/${updatedStock}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Handle the response (e.g., show a success message)
+                console.log(data);
+
+        
+            })
+            .catch(error => {
+                // Handle errors
+                console.error('Error:', error);
+
+                // Optionally, handle errors and provide user feedback
+            });
+            // Toggle back to non-edit mode
+            toggleEditModeBestSeller(itemId);
+
+            // Reload the page to reflect the updated stock
+            location.reload();
+        }
         function toggleEditModeBestSeller(itemId) {
             var buybutton = document.getElementById("buybuttonbestseller" + itemId);
             buybutton.hidden = !buybutton.hidden;
@@ -256,12 +323,12 @@
         //     }
         // }
 
-        function checkoutOrder(itemId)
-        {
-            var updatedStock = getCurrentStock(itemId) -getOrderAmount(itemId);
-            fetch (`/makeTransaction/$itemId/$updatedStock`)
+        // function checkoutOrder(itemId)
+        // {
+        //     var updatedStock = getCurrentStock(itemId) -getOrderAmount(itemId);
+        //     fetch (`/makeTransaction/$itemId/$updatedStock`)
             
-        }
+        // }
 
     </script>
 
