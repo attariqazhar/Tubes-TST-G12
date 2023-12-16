@@ -6,7 +6,8 @@ use App\Models\Item;
 
 class ItemAPI extends ResourceController
 {
-    public function getLowStock()
+    private $token = "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0";
+    public function getLowStock($token)
     {
         $db = \Config\Database::connect();
     
@@ -25,17 +26,27 @@ class ItemAPI extends ResourceController
         ];
     
         // Respond with JSON
-        return $this->response->setStatusCode(200)->setJSON($data);
+        if ($token === "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0") {
+            return $this->response->setStatusCode(200)->setJSON($data);
+        } else {
+            // Respond with an error message
+            $errorData = [
+                'message' => 'error',
+                'items'   => 'Invalid token',
+            ];
+            return $this->response->setStatusCode(401)->setJSON($errorData);
+        }
+        
     }
 
-    public function getItems()
+    public function getItems($token)
     {
         // Connect to the database
         $db = \Config\Database::connect();
     
-        // Build the query to select all fields from the "transaction" table
+        // Build the query to select all fields from the "item" table
         $query = $db->table('item')
-                    ->select('*'); 
+                    ->select('*');
     
         // Execute the query and get the result
         $result = $query->get()->getResult();
@@ -46,7 +57,16 @@ class ItemAPI extends ResourceController
             'items'   => $result,
         ];
     
-        // Respond with JSON
-        return $this->response->setStatusCode(200)->setJSON($data);
+        // Check if the provided token is valid
+        if ($token === "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0") {
+            return $this->response->setStatusCode(200)->setJSON($data);
+        } else {
+            // Respond with an error message
+            $errorData = [
+                'message' => 'error',
+                'error'   => 'Invalid token',
+            ];
+            return $this->response->setStatusCode(401)->setJSON($errorData);
+        }
     }
 }
