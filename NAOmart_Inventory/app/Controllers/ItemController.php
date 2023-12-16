@@ -17,8 +17,12 @@ class ItemController extends BaseController
     public function getItems()
     {
         $model = model(Item::class);
+        $keyword = $this->request->getGet('keyword');
+        if ($keyword == null) {
+            $keyword = '';
+        }
         $data = [
-            'items' => $model->orderBy('itemId', 'DESC')->paginate(5),
+            'items' => $model->like('itemName', $keyword)->orLike('itemId', $keyword)->orderBy('itemId', 'DESC')->paginate(5),
             'pager' => $model->pager
         ];
         return $data;
@@ -29,6 +33,7 @@ class ItemController extends BaseController
         if (session()->get('username') == '') {
             return redirect()->to('login');
         } 
+
         $itemsData = $this->getItems();
         $lowStockItems = $this->getLowStock();
         $totalIncome= $this->getTotalIncomeFromApi();
@@ -41,6 +46,16 @@ class ItemController extends BaseController
         echo view('layout/sidebar');
         echo view('dashboardPage/dashboard',$data);
         echo view('layout/footer');
+    }
+
+    public function search()
+    {
+        // $model = new Item();
+        $model = model(Item::class);
+        $keyword = $this->request->getVar('keyword');
+        $data['items'] = $model->search($keyword);
+
+        return view('components/table', $data);
     }
 
     public function updateStock($itemId, $stock, $token)
@@ -85,6 +100,14 @@ class ItemController extends BaseController
 
         return redirect()->to('/');
         
+    }
+
+    public function delete($itemId){
+        $model = new Item();
+        $model->delete([
+            'itemId' => $itemId
+        ]);
+        return redirect()->to('/');
     }
 
 

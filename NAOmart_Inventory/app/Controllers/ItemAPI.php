@@ -7,7 +7,7 @@ use App\Models\Item;
 class ItemAPI extends ResourceController
 {
     private $token = "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0";
-    public function getLowStock($token)
+    public function getLowStock($incomingToken)
     {
         $db = \Config\Database::connect();
     
@@ -26,7 +26,7 @@ class ItemAPI extends ResourceController
         ];
     
         // Respond with JSON
-        if ($token === "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0") {
+        if ($incomingToken === $this->token) {
             return $this->response->setStatusCode(200)->setJSON($data);
         } else {
             // Respond with an error message
@@ -39,7 +39,7 @@ class ItemAPI extends ResourceController
         
     }
 
-    public function getItems($token)
+    public function getItems($incomingToken)
     {
         // Connect to the database
         $db = \Config\Database::connect();
@@ -58,7 +58,7 @@ class ItemAPI extends ResourceController
         ];
     
         // Check if the provided token is valid
-        if ($token === "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0") {
+        if ($incomingToken === $this->token) {
             return $this->response->setStatusCode(200)->setJSON($data);
         } else {
             // Respond with an error message

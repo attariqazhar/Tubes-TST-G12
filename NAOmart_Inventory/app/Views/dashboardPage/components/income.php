@@ -6,7 +6,8 @@
     </div>
     <div class="flex flex-col justify-center">
         <h1 class="text-[25px]">Total Income</h1>
-        <a class="text-[30px] font-extrabold"><?php echo isset($totalIncome) ? 'Rp' . $totalIncome : 'N/A'; ?></a>
+        <a class="text-[30px] font-extrabold"><?php echo 'Rp' . number_format($totalIncome, 0, ',', '.'); ?></a>
+        
     </div>
 </div>
 
