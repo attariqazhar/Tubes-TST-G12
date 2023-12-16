@@ -4,9 +4,14 @@ use CodeIgniter\RESTful\ResourceController;
 use App\Models\Transaction;
 
 class TransactionAPI extends ResourceController
-{
-    public function sendTransactionData()
-    {
+{  
+    private $token = "e3fa7f5c45138d6d42a6e2db3f0b8fc5"; 
+    public function sendTransactionData($incomingToken)
+    {   
+        if ($this->token != $incomingToken)
+        {
+            return("Wrong Authentication!");
+        }
         $model = model(Transaction::class);
         $data = [
                 'message' => 'success',
@@ -15,8 +20,12 @@ class TransactionAPI extends ResourceController
         return $this->respond($data,200);
     }
 
-    public function sendBestSelling()
+    public function sendBestSelling($incomingToken)
     {
+        if ($this->token != $incomingToken)
+        {
+            return("Wrong Authentication!");
+        }
         $db = \Config\Database::connect();        
         $query = $db->table('transaction')
                     ->select("itemName,itemId,SUM(amount) as totalAmount")
@@ -33,8 +42,12 @@ class TransactionAPI extends ResourceController
         return $this->respond($data,200);
     }
 
-    public function sendTotalIncome()
+    public function sendTotalIncome($incomingToken)
     {
+        if ($this->token != $incomingToken)
+        {
+            return("Wrong Authentication!");
+        }
         $db = \Config\Database::connect();
         $query = $db->table('transaction')
                     ->select('SUM(totalPrice)')

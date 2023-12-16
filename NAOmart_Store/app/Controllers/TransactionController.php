@@ -1,9 +1,11 @@
 <?php
 namespace App\Controllers;
-Use App\Models\Transaction;
 
-class TransactionController extends BaseController {
-    
+use App\Models\Transaction;
+
+class TransactionController extends BaseController
+{
+
     public function index()
     {
         // $model = model(Transaction::class);
@@ -11,7 +13,7 @@ class TransactionController extends BaseController {
         // return view('/profile-and-transaction/transaction');
         if (session()->get('username') == '') {
             return redirect()->to('login');
-        }            
+        }
         $model = model(Transaction::class);
         $customer = session('email');
         $data['transactions'] = $model->getCustomerTransactionHistory($customer);
@@ -33,15 +35,38 @@ class TransactionController extends BaseController {
     {
         $db = \Config\Database::connect();
         $query = $db->table('transaction')
-                    ->select("itemName,itemId,SUM(amount) as totalAmount")
-                    ->groupby("itemName,itemId")
-                    ->orderBy('totalAmount','desc')
-                    ->limit(3)
-                    ->get();
+            ->select("itemName,itemId,SUM(amount) as totalAmount")
+            ->groupby("itemName,itemId")
+            ->orderBy('totalAmount', 'desc')
+            ->limit(3)
+            ->get();
         $result = $query->getResultArray();
         $bestSeller = [
             'bestSellerItems' => $result
         ];
         return $bestSeller;
+    }
+
+    public function addTransaction($email, $item, $amount)
+    {
+        helper('date');
+        // Set the transaction date to the current date and time
+        $transactionDateTimestamp = now();
+
+        // Format the timestamp as 'yyyy-mm-dd'
+        $transactionDate = date('Y-m-d', $transactionDateTimestamp);
+        $data = [
+            'email' => $email,
+            'itemId' => $item['itemId'],
+            'itemName' => $item['itemName'],
+            'amount' => $amount,
+            'category' => $item['category'],
+            'totalPrice' => $amount * $item['price'],
+            'transactionDate' => $transactionDate,
+        ];
+        $model = model(Transaction::class);
+        $model->insert($data);
+        
+        return redirect()->to('/'); 
     }
 }

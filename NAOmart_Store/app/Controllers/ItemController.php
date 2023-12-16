@@ -8,7 +8,7 @@ class ItemController extends BaseController
 {
     public function getLowStock()
     {
-        $api_link = 'http://localhost:8081/API/getLowStock';
+        $api_link = 'http://localhost:8081/API/getLowStock/Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0';
         $json_data = file_get_contents($api_link);
         
         $decoded_data = json_decode($json_data, true);
@@ -21,10 +21,9 @@ class ItemController extends BaseController
         return $data;
     }
 
-
     public function getItems()
     {
-        $api_link = 'http://localhost:8081/API/getItems';
+        $api_link = 'http://localhost:8081/API/getItems/Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0';
         $json_data = file_get_contents($api_link);
         
         $decoded_data = json_decode($json_data, true);
@@ -62,9 +61,9 @@ class ItemController extends BaseController
 
     public function index()
     {
+        
         $items = $this->getItems();
-        $links = $this->getPicture();
-        $data = array_merge($items,$links);
+        $data = array_merge($items);
         if (session()->get('username') == '') {
             return redirect()->to('login');
         }            

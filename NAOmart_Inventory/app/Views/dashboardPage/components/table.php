@@ -123,29 +123,35 @@
                 var updatedStock = getStockValue(itemId);
 
                 // Make an AJAX request to update the item in the database
-                fetch(`/item/update/${itemId}`, {
+                fetch(`/item/updateStock/${itemId}/${updatedStock}/Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0`, {
                     method: 'POST',
-                    body: JSON.stringify({ stock: updatedStock }),
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/json',
+                    },
                 })
                 .then(response => response.json())
                 .then(data => {
                     // Handle the response (e.g., show a success message)
                     console.log(data);
+
+                    // Toggle back to non-edit mode
+                    toggleEditMode(itemId);
+
+                    // Reload the page to reflect the updated stock
+                    location.reload();
                 })
                 .catch(error => {
                     // Handle errors
                     console.error('Error:', error);
-                });
 
+                    // Optionally, handle errors and provide user feedback
+                });
                 
 
-                // Toggle back to non-edit mode
-                toggleEditMode(itemId);
+                // // Toggle back to non-edit mode
+                // toggleEditMode(itemId);
 
-                location.reload();
+                // location.reload();
             }
 
 
