@@ -30,4 +30,4 @@ $routes->post('item/updateStock/(:num)/(:num)', 'ItemController::updateStock/$1/
 // API routes 
 $routes->get('/API/getItems', 'ItemAPI::getItems');
 $routes->get('/API/getLowStock', 'ItemAPI::getLowStock');
-$routes->post('API/update/(:num)', 'ItemController::updateStock/$1');
+$routes->post('/API/update/(:num)/(:num)', 'ItemController::updateStock/$1/$2');

@@ -185,7 +185,7 @@
                             </button>
 
                             <!-- Checkout Button -->
-                            <button hidden id="checkoutbutton<?= $item['itemId'] ?>" onclick="" class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
+                            <button hidden id="checkoutbutton<?= $item['itemId'] ?>" onclick="" action='' class="bg-[#017FCC] rounded-[6px] my-2 text-white font-bold w-[96px]">
                                 Checkout
                             </button>
                         </div>
@@ -211,6 +211,36 @@
 
             var checkoutbutton = document.getElementById("checkoutbutton" + itemId);
             checkoutbutton.hidden = !checkoutbutton.hidden;
+        }
+        // function getOrderAmount(itemId) {
+        //     var orderAmount = document.getElementById("orderInput", + itemId);
+        //     return orderAmount.value;
+        // }
+
+        // function getTotalPrice(itemId) {
+        //     var orderAmount =getOrderAmount(itemId);
+        //     var price = document.getElementById("price", + itemId);
+        //     var TotalPrice = orderAmount * price.value;
+        //     return 
+
+        // }
+
+        // fuction getCurrentStock($itemId,$itemsData)
+        // {
+        //     foreach ($itemsData as $item)
+        //     {
+        //         if ($itemId == $item['itemId'])
+        //         {
+        //             return item['stock'];
+        //         }
+        //     }
+        // }
+
+        function checkoutOrder(itemId)
+        {
+            var updatedStock = getCurrentStock(itemId) -getOrderAmount(itemId);
+            fetch (`/makeTransaction/$itemId/$updatedStock`)
+            
         }
 
     </script>

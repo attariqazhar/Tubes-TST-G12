@@ -2,7 +2,6 @@
 namespace App\Controllers;
 use CodeIgniter\RESTful\ResourceController;
 use App\Models\Transaction;
-use App\Controllers\TransactionController;
 
 class TransactionAPI extends ResourceController
 {
@@ -26,14 +25,11 @@ class TransactionAPI extends ResourceController
                     ->limit(3)
                     ->get();
 
-        $result = $query->getResultArray();
-        
-        $result = (new TransactionController())->getBestSellerItems()['bestSellerItems'];
+        $result = $query->getResult();
         $data =[
             'message' => 'success',
             'bestSeller' => $result
         ];
-        
         return $this->respond($data,200);
     }
 
@@ -49,5 +45,19 @@ class TransactionAPI extends ResourceController
             'totalIncome' => $result
         ];
         return $this->respond($data,200);
+    }
+
+    public function makeTransaction()
+    {
+        $data = [
+            'transactionId' => $this->request->getVar('email'),
+            'email' => $this->request->getVar('email'),
+            'itemId' => $this->request->getVar('itemId'),
+            'itemName' => $this->request->getVar('itemName'),
+            'amount' => $this->request->getVar('amount'),
+            'totalPrice' => $this->request->getVar('totalPrice'),
+            'transactionDate' 
+        ];
+        return $data;
     }
 }

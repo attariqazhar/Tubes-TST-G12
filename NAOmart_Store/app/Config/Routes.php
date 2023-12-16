@@ -13,6 +13,7 @@ $routes->post('/login_action', 'CustomerController::login_action');
 $routes->post('/logout', 'CustomerController::logout');
 $routes->get('/transaction','TransactionController::showTransactionHistory');
 $routes->get('/search', 'ItemController::search');
+$routes->post('/makeTransaction/(:num)/(:num)','StoreController::makeTransaction/$1/$2');
 
 //API Routes
 $routes->get('/transactionAPI/transactionData','TransactionAPI::sendTransactionData');
