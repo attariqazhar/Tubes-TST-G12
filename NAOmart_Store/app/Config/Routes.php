@@ -13,12 +13,12 @@ $routes->post('/login_action', 'CustomerController::login_action');
 $routes->post('/logout', 'CustomerController::logout');
 $routes->get('/transaction','TransactionController::showTransactionHistory');
 $routes->get('/search', 'ItemController::search');
-$routes->post('/makeTransaction/(:num)/(:num)','StoreController::makeTransaction/$1/$2');
+$routes->post('/makeTransaction/(:num)/(:num)/(:any)','StoreController::makeTransaction/$1/$2/$3');
 
 //API Routes
-$routes->get('/transactionAPI/transactionData','TransactionAPI::sendTransactionData');
-$routes->get('/transactionAPI/bestSeller','TransactionAPI::sendBestSelling');
-$routes->get('/transactionAPI/totalIncome','TransactionAPI::sendTotalIncome');
+$routes->get('/transactionAPI/transactionData/(:any)','TransactionAPI::sendTransactionData/$1');
+$routes->get('/transactionAPI/bestSeller/(:any)','TransactionAPI::sendBestSelling/$1');
+$routes->get('/transactionAPI/totalIncome/(:any)','TransactionAPI::sendTotalIncome/$1');
 
 
 
