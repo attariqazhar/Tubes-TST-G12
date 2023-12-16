@@ -90,7 +90,7 @@ class ItemController extends BaseController
 
     function getTotalIncomeFromApi()
     {
-        $apiUrl = 'http://localhost:8080//transactionAPI/totalIncome';
+        $apiUrl = 'http://localhost:8080//transactionAPI/totalIncome/e3fa7f5c45138d6d42a6e2db3f0b8fc5';
         // Set up the HTTP headers
         $options = [
             'http' => [
@@ -122,7 +122,7 @@ class ItemController extends BaseController
 
     function getBestSellersFromApi()
     {
-        $apiUrl = 'http://localhost:8080/transactionAPI/bestSeller';
+        $apiUrl = 'http://localhost:8080/transactionAPI/bestSeller/e3fa7f5c45138d6d42a6e2db3f0b8fc5';
         $response = file_get_contents($apiUrl);
         $responseData = json_decode($response, true);
 
