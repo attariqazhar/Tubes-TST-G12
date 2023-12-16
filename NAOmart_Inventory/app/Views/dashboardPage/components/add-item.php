@@ -7,7 +7,7 @@
             <div class="flex flex-col">
                 <label class="text-sm font-medium" >Item Name</label>
                 <input
-                    class="px-4 py-2 text-sm rounded-md border border-[#242220]/[0.4]" type="text" id="itemName" name="itemName"
+                    required class="px-4 py-2 text-sm rounded-md border border-[#242220]/[0.4]" type="text" id="itemName" name="itemName"
                 />
             </div>
             <div class="flex flex-col w-[150px]">

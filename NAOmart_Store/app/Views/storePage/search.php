@@ -185,4 +185,5 @@
             var checkoutbutton = document.getElementById("checkoutbutton" + itemId);
             checkoutbutton.hidden = !checkoutbutton.hidden;
         }
+    </script>
 </div>

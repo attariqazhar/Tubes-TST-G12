@@ -22,7 +22,7 @@ $routes->get('/login', 'AccountController::login');
 $routes->get('/logout', 'AccountController::logout');
 $routes->post('/login_action', 'AccountController::login_action');
 $routes->post('/logout', 'AccountController::logout');
-$routes->get('delete/(:num)', 'Pages::delete/$1');
+$routes->get('delete/(:num)', 'ItemController::delete/$1');
 $routes->post('/addItem', 'ItemController::addItem');
 $routes->post('item/updateStock/(:num)/(:num)/(:any)', 'ItemController::updateStock/$1/$2/$3');
 

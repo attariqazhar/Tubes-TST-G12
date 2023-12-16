@@ -18,4 +18,16 @@ class Item extends Model
                     ->findAll();
     }
 
+    public function getPaginated($num, $keyword=null){
+        $builder= $this->builder();
+        if ($keyword!=''){
+            $builder->like('itemName',$keyword);
+            $builder->orLike('itemId',$keyword);
+        }
+        return ['items'=>$this->paginate($num),
+                'pager'=>$this->pager,];
+    
+    
+    }
+
 }
