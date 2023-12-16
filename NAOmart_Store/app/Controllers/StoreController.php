@@ -32,9 +32,9 @@ class StoreController extends Controller
 
     public function makeTransaction($itemId, $amount)
     {
-        // $session = session();
-        // $email = $session->get('email');
-        $email = 'owen@gmail.com';
+        $session = session();
+        $email = $session->get('email');
+        //$email = 'owen@gmail.com';
         $items = $this->itemController->getItems();
         $item = null;
         foreach ($items['itemsData'] as $apiItem) {
