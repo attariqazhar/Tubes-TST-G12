@@ -21,17 +21,6 @@ class ItemController extends BaseController
         return $data;
     }
 
-    public function getPicture()
-    {
-        $links = [
-            'toysUrl' => 'https://i.imgur.com/cl1RPTQ.jpg',
-            'householdsUrl' => 'https://i.imgur.com/usbw5zM.jpg',
-            'stationaryUrl' => 'https://imgur.com/cVFmMml',
-            'fndUrl' => 'https://imgur.com/UyXPCpN'
-        ];
-        return $links;
-    }
-
     public function getItems()
     {
         $api_link = 'http://localhost:8081/API/getItems/Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0';
@@ -74,8 +63,7 @@ class ItemController extends BaseController
     {
         
         $items = $this->getItems();
-        $links = $this->getPicture();
-        $data = array_merge($items,$links);
+        $data = array_merge($items);
         if (session()->get('username') == '') {
             return redirect()->to('login');
         }            
