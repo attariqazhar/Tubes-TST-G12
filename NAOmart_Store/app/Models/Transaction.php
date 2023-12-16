@@ -12,7 +12,7 @@ class Transaction extends Model
     }
 
     public function getCustomerTransactionHistory($email) {
-        $result = $this->where('email',$email)->orderBy('transactionDate','DESC')->findAll();
+        $result = $this->where('email',$email)->orderBy('transactionId','DESC')->findAll();
 
         // $result = $this
         //     ->select('transaction.*, customer.*') // Include columns you need from both tables

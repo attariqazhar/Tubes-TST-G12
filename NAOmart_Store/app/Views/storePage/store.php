@@ -16,7 +16,7 @@
                 </div>
             </form>
         </div>
-        <div class="flex justify-center w-screen mr-[260px]">
+        <div class="flex justify-center w-screen mr-[160px]">
             <div class="font-maven text-[50px] italic font-extrabold text-[#017FCC] flex justify-center space-x-5">
                 <a href="/">NAOmart</a>
                 <a href="/">
