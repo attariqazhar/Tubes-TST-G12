@@ -123,7 +123,7 @@
                 var updatedStock = getStockValue(itemId);
 
                 // Make an AJAX request to update the item in the database
-                fetch(`/item/updateStock/${itemId}/${updatedStock}`, {
+                fetch(`/item/updateStock/${itemId}/${updatedStock}/Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

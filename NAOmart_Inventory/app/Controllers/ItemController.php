@@ -43,7 +43,7 @@ class ItemController extends BaseController
         echo view('layout/footer');
     }
 
-    public function updateStock($itemId, $stock)
+    public function updateStock($itemId, $stock, $token)
     {
         // $model = model(Item::class);
         // $model->update($itemId, ['stock' => $stock]);
@@ -51,12 +51,17 @@ class ItemController extends BaseController
         // Get the stock value from the request
         // $stock = $this->request->getJSON(true)['stock'];
 
-        // Update the item in the database
-        $model = model(Item::class);
+        if ($token === "Jh4sGv9p2tRfXq1wL7zYc6n8xUo3mBkA5eIiQjOuPdCs0") {
+            $model = model(Item::class);
         $model->update($itemId, ['stock' => $stock]);
 
         // Respond with a success message or appropriate response
         return $this->response->setJSON(['status' => 'success']);
+        } else {
+            return $this->response->setJSON(['status' => 'failed']);
+        }
+        // Update the item in the database
+
     }
 
 
