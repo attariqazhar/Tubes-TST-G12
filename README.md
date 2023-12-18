@@ -8,6 +8,7 @@
   >Nicolas Owen Halim	(18221095)
 
 ## Deskripsi Sistem
+<div  align="center" ><img src="https://i.imgur.com/ehEpCRH.png" title="source: imgur.com" /></div>
 NAOmart merupakan sebuah toko ritel yang menyediakan berbagai macam kebutuhan sehari-hari. Untuk saat ini, NAOmart hanya menyediakan layanan pembelanjaan secara daring. NAOmart memiliki dua sistem yang saling terintegrasi, yaitu NAOmart Inventory Management dan NAOmart Store. Konsumen NAOmart akan menggunakan website NAOmart Store untuk aktivitas jual-beli sementara pegawai akan mengelola website NAOmart Inventory Management untuk aktivitas mengelola item yang dijual. Kedua sistem tersebut saling terintegrasi untuk mengelola ketersediaan barang yang dijual pada NAOmart. Setiap sistem memiliki domainnya masing-masing. 
 
 ### Sistem Manajemen Inventori (NAOmart Inventory Management)
